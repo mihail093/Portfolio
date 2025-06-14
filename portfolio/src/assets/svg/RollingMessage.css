@@ -1,0 +1,165 @@
+.paper-container {
+    position: absolute;
+    top: 30%;
+    left: 2%;
+    height: 70%;
+    width: 98%;
+}
+
+.paper {
+    height: 100%;
+    width: 100%;
+    background-color: #fee1a4;
+    transform-origin: top;
+    animation: wrapAround 4s 2s ease-in-out forwards;
+}
+
+.content-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    color: black;
+    text-overflow: ellipsis;
+    animation: mainContainer 4s 2s ease-in-out forwards;
+}
+
+.content-sender{
+    animation: emailText 0.2s 2.2s linear forwards;
+}
+
+.content-subject{
+    animation: subjectText 0.2s 2.4s linear forwards;
+}
+
+.row-one{
+    animation: rowOne 0.2s 3s linear forwards;
+}
+
+.row-two{
+    animation: rowTwo 0.2s 3.2s linear forwards;
+}
+
+.row-three{
+    animation: rowThree 0.2s 3.4s linear forwards;
+}
+
+.row-four{
+    animation: rowFour 0.2s 4.05s linear forwards;
+}
+
+.row-five{
+    animation: rowFive 0.2s 4.25s linear forwards;
+}
+
+.content-name{
+    animation: nameText 0.2s 4.64s linear forwards;
+}
+
+@keyframes mainContainer {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-80px);
+    }
+    50% {
+        transform: translateY(-160px);
+    }
+    75% {
+        transform: translateY(-240px);
+    }
+    100% {
+        transform: translateY(-320px);
+    }
+}
+
+@keyframes wrapAround {
+    0% {
+        transform: scaleY(1);
+    }
+    25% {
+        transform: scaleY(0.75);
+    }
+    50% {
+        transform: scaleY(0.5);
+    }
+    75% {
+        transform: scaleY(0.25);
+    }
+    100% {
+        transform: scaleY(0);
+    }
+}
+
+@keyframes emailText {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes subjectText {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes rowOne {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes rowTwo {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes rowThree {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes rowFour {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes rowFive {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes nameText {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

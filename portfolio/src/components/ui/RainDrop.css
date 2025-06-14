@@ -1,0 +1,20 @@
+.raindrop {
+    position: absolute;
+    top: -36px;
+    width: 1.2px;
+    height: 14px;
+    background: #00b3ff;
+    opacity: 0;
+    animation: rainDrop 1s linear infinite;
+}
+  
+  @keyframes rainDrop {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(50vh);
+      opacity: 0;
+    }
+}

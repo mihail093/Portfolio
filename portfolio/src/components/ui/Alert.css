@@ -1,0 +1,35 @@
+.show-alert{
+    position: absolute;
+    opacity: 0;
+    top: -5%;
+    margin: 0.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    animation: show 0.8s ease-in-out 0.4s forwards;
+}
+
+.flash-icon {
+    animation: flesh 0.8s 0.8s ease-in-out 6 forwards;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes flesh {
+    0% {
+        color: #fcbf49;
+    }
+    50% {
+        color: white;
+    }
+    100% {
+        color: #fcbf49;
+    }
+}

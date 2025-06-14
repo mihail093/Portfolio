@@ -1,0 +1,9 @@
+.dark-layout{
+    background-image: linear-gradient(to bottom, #070505, #1d100c, #25130b, #3d210f, #653411, #844422, #964c32, #a4533f, #cf565a);
+    color: whitesmoke;
+}
+
+.light-layout{
+    background-image: linear-gradient(to bottom, #99FFEB, #A6FFEE, #B3FFF0, #BFFFF3, #CCFFF5, #D9FFF8, #E6FFFA, #F2FFFD, #FFFFFF);
+    color: black;
+}

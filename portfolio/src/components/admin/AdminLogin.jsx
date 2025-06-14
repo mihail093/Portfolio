@@ -1,0 +1,119 @@
+import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { SimpleAlert, Modal } from "../ui";
+
+export default function AdminLogin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { login, showLoginModal, closeLoginModal } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validazione di base
+    if (!email || !password) {
+      setError("Email e password sono obbligatori!");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const result = await login(email, password);
+
+      if (result.success) {
+        // se successo chiude il Modal, naviga alla pagina dashboard e resetta il form
+        closeLoginModal();
+        navigate("/admin/dashboard");
+        setEmail("");
+        setPassword("");
+      } else {
+        setError(result.error || "Credenziali non valide");
+      }
+    } catch (error) {
+      setError("Errore durante il login");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleClose = () => {
+    // Reset del form quando chiudi il modal
+    setEmail("");
+    setPassword("");
+    setError("");
+    closeLoginModal();
+  };
+
+  return (
+    <Modal isOpen={showLoginModal} onClose={handleClose} title="Private Area" type="warning">
+      <div className="p-6">
+        {error && <SimpleAlert label={error} type="error" />}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-montserrat text-white mb-1"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="
+                appearance-none relative block w-full px-3 py-2 border placeholder-gray-500 text-black rounded-md 
+                focus:outline-none focus:ring-1 focus:ring-orange-600 focus:border-orange-400 focus:z-10 sm:text-sm"
+              placeholder="write your email"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-montserrat text-white mb-1"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="
+                appearance-none relative block w-full px-3 py-2 border placeholder-gray-500 text-black rounded-md 
+                focus:outline-none focus:ring-1 focus:ring-orange-600 focus:border-orange-400 focus:z-10 sm:text-sm"
+              placeholder="write your password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-montserrat rounded-md text-white ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-[#2c4254] hover:bg-[#017a9b] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#017a9b]"
+            }`}
+          >
+            {loading ? "Logging in..." : "Sign in"}
+          </button>
+        </form>
+      </div>
+    </Modal>
+  );
+}

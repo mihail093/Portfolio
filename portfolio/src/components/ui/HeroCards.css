@@ -1,0 +1,143 @@
+.card {
+  position: absolute;
+  width: 100%;
+  max-width: 190px;
+  height: 220px;
+  padding: 4px 2px 10px 4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.6);
+}
+
+.num {
+  display: none;
+  position: absolute;
+  top: -42px;
+  right: 16px;
+  font-size: 36px;
+  color: #f72585;
+}
+
+.card:hover .num {
+  display: block;
+}
+
+.c1 {
+  animation: moveC1 0.6s ease-out forwards;
+}
+
+.c1-reverse {
+  animation: moveC1Reverse 0.6s ease-in forwards;
+}
+
+.c2 {
+  animation: moveC2 0.6s ease-out forwards;
+}
+
+.c2-reverse {
+  animation: moveC2Reverse 0.6s ease-in forwards;
+}
+
+.c3 {
+  animation: moveC3 0.6s ease-out forwards;
+}
+
+.c3-reverse {
+  animation: moveC3Reverse 0.6s ease-in forwards;
+}
+
+.c4 {
+  animation: moveC4 0.6s ease-out forwards;
+}
+
+.c4-reverse {
+  animation: moveC4Reverse 0.6s ease-in forwards;
+}
+
+.selected {
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%) scale(1.9) rotate(0deg) !important;
+  z-index: 10;
+  cursor: default;
+}
+
+.selected .xicon:hover {
+  scale: 1.1;
+  cursor: pointer;
+}
+
+.selected:hover .num {
+  display: none;
+}
+
+@keyframes moveC1 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-30px) rotate(-40deg);
+  }
+}
+
+@keyframes moveC1Reverse {
+  0% {
+    transform: translateX(-30px) rotate(-40deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes moveC2 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(0px) rotate(-30deg);
+  }
+}
+
+@keyframes moveC2Reverse {
+  0% {
+    transform: translateX(0px) rotate(-30deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes moveC3 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(30px) rotate(-20deg);
+  }
+}
+
+@keyframes moveC3Reverse {
+  0% {
+    transform: translateX(30px) rotate(-20deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes moveC4 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(60px) rotate(-10deg);
+  }
+}
+
+@keyframes moveC4Reverse {
+  0% {
+    transform: translateX(60px) rotate(-10deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
