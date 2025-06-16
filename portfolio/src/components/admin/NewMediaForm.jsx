@@ -13,6 +13,8 @@ const NewMediaForm = ({
   const [file, setFile] = useState(null);
   const [mediaTitle, setMediaTitle] = useState("");
   const [category, setCategory] = useState("project");
+  const [tagInput, setTagInput] = useState("");
+  const [tags, setTags] = useState([]);
   const [mediaType, setMediaType] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [mediaLoading, setMediaLoading] = useState(false);
@@ -64,6 +66,26 @@ const NewMediaForm = ({
     }
   };
 
+  // Gestisce l'aggiunta di un tag
+  const handleAddTag = () => {
+    if (
+      tagInput.trim() &&
+      !tags.includes(tagInput.trim())
+    ) {
+      setTags((prev) => ([
+        ...prev, tagInput.trim(),
+      ]));
+      setTagInput("");
+    }
+  };
+
+  // Gestisce la rimozione di un tag
+  const handleRemoveTag = (tag) => {
+    setTags((prev) => ([
+      ...prev.filter((t) => t !== tag),
+    ]));
+  };
+
   // Gestisce il click sul bottone "Indietro"
   const handleBackClick = () => {
     if (uploadingProjectImg) {
@@ -81,6 +103,8 @@ const NewMediaForm = ({
     setPreviewUrl("");
     setMediaType("");
     setCategory("project");
+    setTagInput("");
+    setTags([]);
   };
 
   // Invia il form del media
@@ -98,10 +122,10 @@ const NewMediaForm = ({
       return;
     }
 
-    // Se stiamo caricando un'immagine per un progetto, verifica che sia un'immagine
+    // Se stiamo caricando un'immagine copertina per un progetto, verifica che sia un'immagine
     if (uploadingProjectImg && mediaType !== "image") {
       setMessage({
-        text: "Per i progetti è necessario caricare un'immagine!",
+        text: "Per i progetti è necessario caricare un'immagine copertina!",
         type: "warning",
       });
       return;
@@ -117,6 +141,12 @@ const NewMediaForm = ({
       formData.append("media", file);
       formData.append("title", mediaTitle);
       formData.append("category", category);
+
+      // Aggiungi i tag al FormData se forniti
+      if (tags && tags.length > 0) {
+        const tagsString = Array.isArray(tags) ? tags.join(',') : tags;
+        formData.append('tags', tagsString);
+      }
 
       // Invia al server
       const response = await mediaService.uploadMedia(formData);
@@ -195,6 +225,52 @@ const NewMediaForm = ({
           <option value="project">Progetto</option>
           <option value="other">Altro</option>
         </select>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-gray-700 text-xs sm:text-sm font-semibold sm:font-bold mb-2">
+          Tags <span className="text-red-500">*</span>
+        </label>
+        <div className="flex">
+          <input
+            type="text"
+            value={tagInput}
+            onChange={(e) => setTagInput(e.target.value)}
+            className="w-0 min-w-0 flex-grow px-2 sm:px-3 py-2 border rounded-l-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs sm:text-sm"
+            placeholder="Associa il media ad uno specifico progetto"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleAddTag();
+              }
+            }}
+          />
+          <button
+            type="button"
+            onClick={handleAddTag}
+            className="px-3 sm:px-4 py-2 bg-blue-500 text-white rounded-r-lg hover:bg-blue-600 transition-colors text-xs sm:text-sm"
+          >
+            +
+          </button>
+        </div>
+
+        <div className="flex flex-wrap gap-2 mt-2">
+          {tags.map((tag, index) => (
+            <span
+              key={index}
+              className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full flex items-center text-xs sm:text-sm"
+            >
+              {tag}
+              <button
+                type="button"
+                onClick={() => handleRemoveTag(tag)}
+                className="ml-2 text-blue-800 hover:text-blue-600 transition-colors"
+              >
+                &times;
+              </button>
+            </span>
+          ))}
+        </div>
       </div>
 
       <div className="mb-4">

@@ -123,6 +123,27 @@ export default function MediaViewModal({ isOpen, onClose, media }) {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <TagIcon className="w-4 h-4 inline mr-1" aria-hidden="true" />
+                      Tags
+                    </label>
+                    {media.tags.length > 0 ? (
+                      media.tags.map((tag, index) => (
+                        <span 
+                          key={index}
+                          className="text-xs text-gray-900 bg-gray-50 p-2 rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-xs text-gray-900 bg-gray-50 p-2 rounded">
+                          Nessun tag
+                      </span>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       <CalendarIcon className="w-4 h-4 inline mr-1" aria-hidden="true" />
                       Data caricamento
                     </label>
@@ -156,7 +177,6 @@ export default function MediaViewModal({ isOpen, onClose, media }) {
                   {media.cloudinaryId && (
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
-                        <TagIcon className="w-4 h-4 inline mr-1" aria-hidden="true" />
                         Cloudinary ID
                       </label>
                       <p className="text-gray-900 bg-gray-50 p-2 rounded text-xs font-mono">

@@ -135,14 +135,58 @@ export const projectService = {
 
 // SERVIZI PER I MEDIA (immagini e video)
 export const mediaService = {
-  // Ottieni tutti i media con filtro opzionale per categoria
-  getMedia: async (category = null) => {
+  // Ottieni tutti i media con filtri opzionali
+  getMedia: async (filters = {}) => {
     try {
-      const params = category ? { category } : {};
+      const params = {};
+
+      // Filtro per categoria esistente
+      if (filters.category) {
+        params.category = filters.category;
+      }
+
+      // Filtro per tipo di media
+      if (filters.mediaType) {
+        params.mediaType = filters.mediaType;
+      }
+
+      // Filtro per tag
+      if (filters.tags && filters.tags.length > 0) {
+        // Converte array di tag in stringa separata da virgole
+        params.tags = Array.isArray(filters.tags)
+          ? filters.tags.join(",")
+          : filters.tags;
+      }
+
       const response = await api.get("/media", { params });
       return response.data;
     } catch (error) {
       console.error("Errore nel recupero dei media:", error);
+      throw error;
+    }
+  },
+
+  // Metodo specifico per filtrare media per tag
+    getMediaByTags: async (tags) => {
+    try {
+      const tagsString = Array.isArray(tags) ? tags.join(',') : tags;
+      const response = await api.get("/media", { 
+        params: { tags: tagsString } 
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Errore nel recupero dei media per tag:", error);
+      throw error;
+    }
+  },
+
+  // Metodo per ottenere tutti i tag disponibili
+  getAllTags: async () => {
+    try {
+      const response = await api.get("/media/tags");
+      return response.data;
+    } catch (error) {
+      console.error("Errore nel recupero dei tag:", error);
       throw error;
     }
   },

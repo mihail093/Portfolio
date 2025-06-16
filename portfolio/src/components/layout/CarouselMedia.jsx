@@ -4,27 +4,11 @@ import { motion } from "framer-motion";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { ResponsiveCloudinaryImage } from "../ui";
 
-import capstoneProjectImage from "../../assets/images/capstoneProject.png";
-import immagineProva from "../../assets/images/immagineProva.png";
-import comingSoon from "../../assets/images/comingSoon.png";
-import epiBOOKS from "../../assets/images/epiBOOKS.png";
-import headerImg from "../../assets/images/headerImg.png";
-import headerTexture from "../../assets/images/headerTexture.jpg";
-
-export default function CarouselMedia() {
+export default function CarouselMedia({ media }) {
   const { isDark } = useTheme();
 
-  const imagesArray = [
-    capstoneProjectImage,
-    immagineProva,
-    comingSoon,
-    epiBOOKS,
-    headerImg,
-    headerTexture,
-  ];
-
-  // useState per salvare i media
-  const [mediaData, setMediaData] = useState([]);
+  // NUOVO: Costante per la durata dell'animazione
+  const ANIMATION_DURATION = 400; // ms - valore centralizzato
 
   // useState per gestire l'animazione sfogliamento Card
   const [cardsIndex, setCardsIndex] = useState({
@@ -40,7 +24,7 @@ export default function CarouselMedia() {
   const [isFlippingRight, setIsFlippingRight] = useState(false);
 
   useEffect(() => {
-    const totalImages = imagesArray.length;
+    const totalImages = media.length;
 
     if (totalImages <= 3) {
       setCardsIndex({
@@ -63,7 +47,6 @@ export default function CarouselMedia() {
         canNavigate: true,
       });
     } else {
-      // Con 5 o più immagini
       setCardsIndex({
         hiddenLeftIndex: totalImages - 1,
         leftIndex: 0,
@@ -74,19 +57,19 @@ export default function CarouselMedia() {
         canNavigate: true,
       });
     }
-  }, []);
+  }, [media]);
 
-  // Funzione per sfogliare le Card verso sinistra
+  // MIGLIORATO: Funzione per sfogliare le Card verso sinistra
   const handleLeftClick = () => {
-    if (isFlippingLeft || !cardsIndex.canNavigate) return;
+    if (isFlippingLeft || isFlippingRight || !cardsIndex.canNavigate) return;
 
     setIsFlippingLeft(true);
 
+    // NUOVO: Usa la costante di durata invece di valore hardcodato
     setTimeout(() => {
       setCardsIndex((prevState) => {
-        const totalImages = imagesArray.length;
+        const totalImages = media.length;
 
-        // Calcola i nuovi indici sfogliando verso destra
         const newCenterIndex = prevState.rightIndex;
         const newLeftIndex = prevState.centerIndex;
         const newHiddenLeftIndex = prevState.leftIndex;
@@ -105,20 +88,20 @@ export default function CarouselMedia() {
       });
 
       setIsFlippingLeft(false);
-    }, 300);
+    }, ANIMATION_DURATION);
   };
 
-  // Funzione per sfogliare le Card verso destra
+  // MIGLIORATO: Funzione per sfogliare le Card verso destra
   const handleRightClick = () => {
-    if (isFlippingRight || !cardsIndex.canNavigate) return;
+    if (isFlippingLeft || isFlippingRight || !cardsIndex.canNavigate) return;
 
     setIsFlippingRight(true);
 
+    // NUOVO: Usa la costante di durata invece di valore hardcodato
     setTimeout(() => {
       setCardsIndex((prevState) => {
-        const totalImages = imagesArray.length;
+        const totalImages = media.length;
 
-        // Calcola i nuovi indici sfogliando verso sinistra
         const newCenterIndex = prevState.leftIndex;
         const newRightIndex = prevState.centerIndex;
         const newHiddenRightIndex = prevState.rightIndex;
@@ -137,71 +120,79 @@ export default function CarouselMedia() {
       });
 
       setIsFlippingRight(false);
-    }, 300);
+    }, ANIMATION_DURATION);
   };
 
-  // Funzione helper per gestire immagini null
+  // NUOVO: Configurazione animazione centralizzata
+  const animationConfig = {
+    duration: ANIMATION_DURATION / 1000, // Framer Motion usa secondi
+    ease: "easeInOut", // Tipo di easing più fluido
+  };
+
   const getImageSrc = (index) => {
-    return index !== null ? imagesArray[index] : null;
+    return index !== null ? media[index].mediaUrl : null;
   };
 
   return (
-    <div
-      className={`
-          flex flex-col md:flex-row justify-center items-center gap-2
-          p-2 mt-6 w-full max-w-8xl mx-auto z-10
-        `}
-    >
+    <div className="flex flex-col md:flex-row justify-center items-center gap-2 p-2 mt-6 w-full max-w-8xl mx-auto z-10">
       {/* Controllo cambio Card (sinistra) */}
       <div
         className={`
-          relative pe-2 py-1 sm:pe-4 sm:py-2 rounded-full z-20
+          relative pe-2 py-1 sm:pe-4 sm:py-2 rounded-full z-20 transition-all duration-200
           ${
             isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
               ? "bg-black/40 cursor-not-allowed"
-              : "group bg-black cursor-pointer"
+              : "group bg-black cursor-pointer hover:bg-black/80"
           }
         `}
         onClick={handleLeftClick}
       >
         <ChevronLeftIcon
           className={`
-            w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 transition-transform duration-200 group-hover:scale-125
+            w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 transition-all duration-200 group-hover:scale-110
             ${
               isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
                 ? "text-gray-400"
-                : "text-cyan-500"
+                : "text-cyan-500 group-hover:text-cyan-400"
             }
           `}
-          aria-hidden="true"
         />
         <ChevronLeftIcon
           className={`
-            absolute top-[8px] left-[12px] sm:top-[16px] sm:left-[16px] w-6 h-6 sm:w-8 sm:h-8 lg:left-[24px] lg:w-12 lg:h-12 transition-transform duration-200 group-hover:scale-125
+            absolute top-[8px] left-[12px] sm:top-[16px] sm:left-[16px] w-6 h-6 sm:w-8 sm:h-8 lg:left-[24px] lg:w-12 lg:h-12 transition-all duration-200 group-hover:scale-110
             ${
               isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
                 ? "text-gray-400"
-                : "text-cyan-500"
+                : "text-cyan-500 group-hover:text-cyan-400"
             }
           `}
-          aria-hidden="true"
         />
       </div>
 
-      <div
-        className="
-            flex justify-center items-center gap-6 
-            w-full h-[420px] px-2
-        "
-      >
+      <div className="flex justify-center items-center gap-6 w-full h-[420px] px-2">
+        {/* Card nascosta sinistra */}
         <motion.div
-          initial={{ opacity: 0, rotateX: 0, rotateY: 0, x: -40 }}
+          initial={{ opacity: 0, rotateX: 0, rotateY: 0, x: -60 }}
           animate={
             isFlippingRight
-              ? { opacity: 1, rotateX: 32, rotateY: 32, x: 170 }
-              : { opacity: 0, rotateX: 0, rotateY: 0, x: -40 }
+              ? { 
+                  opacity: 1, 
+                  rotateX: 25, 
+                  rotateY: 45, 
+                  x: 120,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
+              : { 
+                  opacity: 0, 
+                  rotateX: 0, 
+                  rotateY: 0, 
+                  x: -60,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
           }
-          transition={isFlippingRight ? { duration: 0.3 } : { duration: 0 }}
+          transition={isFlippingRight ? animationConfig : { duration: 0 }}
           className="w-1/8 h-1/4"
         >
           <ResponsiveCloudinaryImage
@@ -210,19 +201,39 @@ export default function CarouselMedia() {
           />
         </motion.div>
 
+        {/* Card sinistra */}
         <motion.div
-          initial={{ opacity: 1, rotateX: 32, rotateY: 32, x: 0 }}
+          initial={{ opacity: 1, rotateX: 25, rotateY: 45, x: 0 }}
           animate={
             isFlippingRight
-              ? { rotateX: 0, rotateY: 0, x: 392, scaleX: 4.062, scaleY: 3.782 }
+              ? { 
+                  rotateX: 0, 
+                  rotateY: 0, 
+                  x: 350, 
+                  scaleX: 3, 
+                  scaleY: 3,
+                  opacity: 1
+                }
               : isFlippingLeft
-              ? { opacity: 0, rotateX: 0, rotateY: 0, x: -210 }
-              : { opacity: 1, rotateX: 32, rotateY: 32, x: 0 }
+              ? { 
+                  opacity: 0, 
+                  rotateX: 0, 
+                  rotateY: 0, 
+                  x: -180,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
+              : { 
+                  opacity: 1, 
+                  rotateX: 25, 
+                  rotateY: 45, 
+                  x: 0,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
           }
           transition={
-            isFlippingRight || isFlippingLeft
-              ? { duration: 0.3 }
-              : { duration: 0 }
+            isFlippingRight || isFlippingLeft ? animationConfig : { duration: 0 }
           }
           className="w-1/8 h-1/4"
         >
@@ -232,31 +243,36 @@ export default function CarouselMedia() {
           />
         </motion.div>
 
+        {/* Card centrale */}
         <motion.div
-          initial={{ rotateX: 0, rotateY: 0, x: 0 }}
+          initial={{ rotateX: 0, rotateY: 0, x: 0, scaleX: 1, scaleY: 1 }}
           animate={
             isFlippingRight
               ? {
-                  rotateX: 32,
-                  rotateY: 32,
-                  x: 392,
-                  scaleX: 0.246,
-                  scaleY: 0.264,
+                  rotateX: 25,
+                  rotateY: -45,
+                  x: 370,
+                  scaleX: 0.2,
+                  scaleY: 0.2,
                 }
               : isFlippingLeft
               ? {
-                  rotateX: 32,
-                  rotateY: 32,
-                  x: -392,
-                  scaleX: 0.246,
-                  scaleY: 0.264,
+                  rotateX: 25,
+                  rotateY: 45,
+                  x: -370,
+                  scaleX: 0.2,
+                  scaleY: 0.2,
                 }
-              : { rotateX: 0, rotateY: 0, x: 0 }
+              : { 
+                  rotateX: 0, 
+                  rotateY: 0, 
+                  x: 0,
+                  scaleX: 1,
+                  scaleY: 1
+                }
           }
           transition={
-            isFlippingRight || isFlippingLeft
-              ? { duration: 0.3 }
-              : { duration: 0 }
+            isFlippingRight || isFlippingLeft ? animationConfig : { duration: 0 }
           }
           className="w-1/2 h-auto"
         >
@@ -266,25 +282,39 @@ export default function CarouselMedia() {
           />
         </motion.div>
 
+        {/* Card destra */}
         <motion.div
-          initial={{ opacity: 1, rotateX: 32, rotateY: 32, x: 0 }}
+          initial={{ opacity: 1, rotateX: 25, rotateY: -45, x: 0 }}
           animate={
             isFlippingRight
-              ? { opacity: 0, rotateX: 0, rotateY: 0, x: 210 }
+              ? { 
+                  opacity: 0, 
+                  rotateX: 0, 
+                  rotateY: 0, 
+                  x: 180,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
               : isFlippingLeft
               ? {
                   rotateX: 0,
                   rotateY: 0,
-                  x: -392,
-                  scaleX: 4.062,
-                  scaleY: 3.782,
+                  x: -350,
+                  scaleX: 3,
+                  scaleY: 3,
+                  opacity: 1
                 }
-              : { opacity: 1, rotateX: 32, rotateY: 32, x: 0 }
+              : { 
+                  opacity: 1, 
+                  rotateX: 25, 
+                  rotateY: -45, 
+                  x: 0,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
           }
           transition={
-            isFlippingRight || isFlippingLeft
-              ? { duration: 0.3 }
-              : { duration: 0 }
+            isFlippingRight || isFlippingLeft ? animationConfig : { duration: 0 }
           }
           className="w-1/8 h-1/4"
         >
@@ -294,14 +324,29 @@ export default function CarouselMedia() {
           />
         </motion.div>
 
+        {/* Card nascosta destra */}
         <motion.div
-          initial={{ opacity: 0, rotateX: 0, rotateY: 0, x: 40 }}
+          initial={{ opacity: 0, rotateX: 0, rotateY: 0, x: 60 }}
           animate={
             isFlippingLeft
-              ? { opacity: 1, rotateX: 32, rotateY: 32, x: -170 }
-              : { opacity: 0, rotateX: 0, rotateY: 0, x: 40 }
+              ? { 
+                  opacity: 1, 
+                  rotateX: 25, 
+                  rotateY: -45, 
+                  x: -120,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
+              : { 
+                  opacity: 0, 
+                  rotateX: 0, 
+                  rotateY: 0, 
+                  x: 60,
+                  scaleX: 0.7,
+                  scaleY: 0.7
+                }
           }
-          transition={isFlippingLeft ? { duration: 0.3 } : { duration: 0 }}
+          transition={isFlippingLeft ? animationConfig : { duration: 0 }}
           className="w-1/8 h-1/4"
         >
           <ResponsiveCloudinaryImage
@@ -314,36 +359,34 @@ export default function CarouselMedia() {
       {/* Controllo cambio Card (destra) */}
       <div
         className={`
-        relative pl-2 py-1 sm:pl-4 sm:py-2 rounded-full mb-4 md:mb-0 z-20
-        ${
-          isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
-            ? "bg-black/40 cursor-not-allowed"
-            : "group bg-black cursor-pointer"
-        }
-      `}
+          relative pl-2 py-1 sm:pl-4 sm:py-2 rounded-full mb-4 md:mb-0 z-20 transition-all duration-200
+          ${
+            isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
+              ? "bg-black/40 cursor-not-allowed"
+              : "group bg-black cursor-pointer hover:bg-black/80"
+          }
+        `}
         onClick={handleRightClick}
       >
         <ChevronRightIcon
           className={`
-          w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 transition-transform duration-200 group-hover:scale-125
-          ${
-            isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
-              ? "text-gray-400"
-              : "text-cyan-500"
-          }
-        `}
-          aria-hidden="true"
+            w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 transition-all duration-200 group-hover:scale-110
+            ${
+              isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
+                ? "text-gray-400"
+                : "text-cyan-500 group-hover:text-cyan-400"
+            }
+          `}
         />
         <ChevronRightIcon
           className={`
-          absolute top-[8px] right-[12px] sm:top-[16px] sm:right-[16px] w-6 h-6 sm:w-8 sm:h-8 lg:right-[24px] lg:w-12 lg:h-12 transition-transform duration-200 group-hover:scale-125
-          ${
-            isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
-              ? "text-gray-400"
-              : "text-cyan-500"
-          }
-        `}
-          aria-hidden="true"
+            absolute top-[8px] right-[12px] sm:top-[16px] sm:right-[16px] w-6 h-6 sm:w-8 sm:h-8 lg:right-[24px] lg:w-12 lg:h-12 transition-all duration-200 group-hover:scale-110
+            ${
+              isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
+                ? "text-gray-400"
+                : "text-cyan-500 group-hover:text-cyan-400"
+            }
+          `}
         />
       </div>
     </div>

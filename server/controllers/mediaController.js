@@ -5,13 +5,17 @@ const { cloudinary } = require('../config/cloudinary');
 // @route   GET /api/media
 exports.getMedia = async (req, res) => {
   try {
-    // Filtra per tipo e categoria se specificati nella query
+    // Filtra per tipo, categoria e tag se specificati nella query
     const filter = {};
     if (req.query.mediaType) {
       filter.mediaType = req.query.mediaType;
     }
     if (req.query.category) {
       filter.category = req.query.category;
+    }
+    if (req.query.tags) {
+      const tagsArray = req.query.tags.split(',').map(tag => tag.trim());
+      filter.tags = { $in: tagsArray }; // Trova media che contengono almeno uno dei tag
     }
     
     const media = await Media.find(filter).sort({ createdAt: -1 });
@@ -62,20 +66,36 @@ exports.uploadMedia = async (req, res) => {
     if (!req.file) {
       return res.status(400).json({
         success: false,
-        error: 'Nessun file caricato'
+        error: "Nessun file caricato",
       });
     }
 
     // Determina il tipo di media in base al mimetype
-    const mediaType = req.file.mimetype.startsWith('image/') ? 'image' : 'video';
+    const mediaType = req.file.mimetype.startsWith("image/")
+      ? "image"
+      : "video";
+
+    // Processa i tag dal frontend
+    let tags = [];
+    if (req.body.tags) {
+      if (Array.isArray(req.body.tags)) {
+        tags = req.body.tags;
+      } else if (typeof req.body.tags === "string") {
+        tags = req.body.tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter((tag) => tag.length > 0);
+      }
+    }
 
     // Crea un nuovo record nel database
     const newMedia = new Media({
-      title: req.body.title || 'Media senza titolo',
+      title: req.body.title || "Media senza titolo",
       mediaUrl: req.file.path, // URL del media su Cloudinary
       cloudinaryId: req.file.filename, // ID pubblico del media su Cloudinary
       mediaType: mediaType,
-      category: req.body.category || 'project'
+      category: req.body.category || "project",
+      tags: tags,
     });
 
     // Salva il record nel database
@@ -83,7 +103,7 @@ exports.uploadMedia = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      data: savedMedia
+      data: savedMedia,
     });
   } catch (error) {
     console.error('Errore upload:', error.message || error);
@@ -91,6 +111,24 @@ exports.uploadMedia = async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Errore durante il caricamento del media'
+    });
+  }
+};
+
+// @desc    Ottieni tutti i tag disponibili
+// @route   GET /api/media/tags
+exports.getAllTags = async (req, res) => {
+  try {
+    const tags = await Media.distinct('tags');
+    
+    res.status(200).json({
+      success: true,
+      data: tags.sort()
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: 'Errore del server'
     });
   }
 };

@@ -6,6 +6,7 @@ import {
   StarIcon, 
   CodeBracketIcon,
   GlobeAltIcon,
+  TagIcon,
 } from '@heroicons/react/24/outline';
 import { 
   StarIcon as StarIconSolid 
@@ -125,7 +126,9 @@ export default function AdminProjectDetailsComponent({ project, onProjectRemoved
             "
           >
             <StarIconSolid className="w-4 h-4" aria-hidden="true" />
-            <span className="text-xs text-black md:text-sm hidden sm:block">In evidenza</span>
+            <span className="text-xs text-black md:text-sm hidden sm:block">
+              In evidenza
+            </span>
           </div>
         )}
       </div>
@@ -159,30 +162,67 @@ export default function AdminProjectDetailsComponent({ project, onProjectRemoved
             <div className="flex items-center gap-2">
               {project.featured ? (
                 <>
-                  <StarIconSolid className="hidden sm:block w-5 h-5 text-yellow-500" aria-hidden="true" />
+                  <StarIconSolid
+                    className="hidden sm:block w-5 h-5 text-yellow-500"
+                    aria-hidden="true"
+                  />
                   <span className="text-green-700 bg-[#e1edde] text-xs sm:text-sm truncate">
                     Progetto in evidenza
                   </span>
                 </>
               ) : (
                 <>
-                  <StarIcon className="hidden sm:block w-5 h-5 text-gray-400" aria-hidden="true" />
+                  <StarIcon
+                    className="hidden sm:block w-5 h-5 text-gray-400"
+                    aria-hidden="true"
+                  />
                   <span className="text-gray-600 text-xs sm:text-sm truncate">
                     Progetto non in evidenza
                   </span>
                 </>
               )}
             </div>
+            {/* Tags */}
+            <div className="flex items-center gap-2">
+              {project.tags.length > 0 ? (
+                <>
+                  <TagIcon
+                    className="hidden sm:block w-5 h-5"
+                    aria-hidden="true"
+                  />
+                  {project.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className="text-gray-600 text-xs sm:text-sm truncate"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </>
+              ) : (
+                <>
+                  <span className="text-gray-600 text-xs sm:text-sm truncate">
+                    "Tags non disponibili"
+                  </span>
+                </>
+              )}
+            </div>
             {/* Data di creazione */}
             <div className="flex items-center gap-2 text-gray-600">
-              <CalendarIcon className="hidden sm:block w-5 h-5" aria-hidden="true" />
+              <CalendarIcon
+                className="hidden sm:block w-5 h-5"
+                aria-hidden="true"
+              />
               <span className="text-xs sm:text-sm truncate">
                 Creato il: {formatDate(project.createdAt)}
               </span>
             </div>
             {/* URL GitHub */}
             <div className="flex items-center gap-2">
-              <CodeBracketIcon className="hidden sm:block w-5 h-5 text-gray-600" aria-hidden="true" />
+              <CodeBracketIcon
+                className="hidden sm:block w-5 h-5 text-gray-600"
+                aria-hidden="true"
+              />
               {project.githubUrl ? (
                 <a
                   href={project.githubUrl}
@@ -200,7 +240,10 @@ export default function AdminProjectDetailsComponent({ project, onProjectRemoved
             </div>
             {/* URL Live */}
             <div className="flex items-center gap-2">
-              <GlobeAltIcon className="hidden sm:block w-5 h-5 text-gray-600" aria-hidden="true" />
+              <GlobeAltIcon
+                className="hidden sm:block w-5 h-5 text-gray-600"
+                aria-hidden="true"
+              />
               {project.liveUrl ? (
                 <a
                   href={project.liveUrl}

@@ -1,34 +1,44 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const MediaSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "Il titolo del media è obbligatorio"],
     trim: true,
-    maxlength: [100, 'Il titolo del media non può superare i 100 caratteri']
+    maxlength: [100, "Il titolo del media non può superare i 100 caratteri"],
   },
   mediaUrl: {
     type: String,
-    required: [true, "L'URL del media è obbligatorio"]
+    required: [true, "L'URL del media è obbligatorio"],
   },
   cloudinaryId: {
     type: String,
-    required: [true, "L'ID Cloudinary è obbligatorio"]
+    required: [true, "L'ID Cloudinary è obbligatorio"],
   },
   mediaType: {
     type: String,
-    enum: ['image', 'video'],
-    required: [true, "Il tipo di media è obbligatorio"]
+    enum: ["image", "video"],
+    required: [true, "Il tipo di media è obbligatorio"],
   },
   category: {
     type: String,
-    enum: ['project', 'other'],
-    default: 'project'
+    enum: ["project", "other"],
+    default: "project",
+  },
+  tags: {
+    type: [String],
+    default: [],
+    validate: {
+      validator: function (tags) {
+        return tags.length <= 10; // Massimo 10 tag
+      },
+      message: "Non puoi aggiungere più di 10 tag",
+    },
   },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-module.exports = mongoose.model('Media', MediaSchema);
+module.exports = mongoose.model("Media", MediaSchema);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { mediaService } from "../services/apiService";
 import { useTheme } from "../context/ThemeContext";
 import { ResponsiveCloudinaryImage } from "../components/ui";
 import {
@@ -19,38 +20,55 @@ export default function ProjectDetails() {
   const [isLoading, setIsLoading] = useState(true);
 
   // useState per salvare i dati
-  const [projectData, setProjectData] = useState({ technologies: [] });
+  const [projectData, setProjectData] = useState({ technologies: [], tags: [] });
+  const [media, setMedia] = useState([]);
 
-  // Carica i dati dal localStorage quando il componente si monta
   useEffect(() => {
-    const loadStoredData = () => {
-      try {
-        setIsLoading(true);
-        const storedData = localStorage.getItem("portfolio_project_details");
-        if (storedData) {
-          const parsedData = JSON.parse(storedData);
-          setProjectData({
-            ...parsedData,
-            technologies: Array.isArray(parsedData.technologies)
-              ? parsedData.technologies
-              : [],
-          });
-        } else {
-          // fallback se non ci sono dati
-          setProjectData({ technologies: [] });
+  const loadStoredData = async () => {
+    try {
+      setIsLoading(true);
+      const storedData = localStorage.getItem("portfolio_project_details");
+      
+      if (storedData) {
+        const parsedData = JSON.parse(storedData);
+        const newProjectData = {
+          ...parsedData,
+          technologies: Array.isArray(parsedData.technologies)
+            ? parsedData.technologies
+            : [],
+          tags: Array.isArray(parsedData.tags)
+            ? parsedData.tags
+            : [],
+        };
+        
+        // Prima aggiorna lo stato
+        setProjectData(newProjectData);
+        
+        // Poi carica i media usando i tag appena parsati
+        if (newProjectData.tags && newProjectData.tags.length > 0) {
+          try {
+            const mediaData = await mediaService.getMediaByTags(newProjectData.tags);
+            if (mediaData && mediaData.data && Array.isArray(mediaData.data)) {
+              setMedia(mediaData.data);
+            }
+          } catch (error) {
+            console.error("Errore nel caricamento dei media", error);
+          }
         }
-      } catch (error) {
-        console.error(
-          "Errore durante il recupero dei dati dal localStorage:",
-          error
-        );
-        setProjectData({ technologies: [] });
-      } finally {
-        setIsLoading(false);
+      } else {
+        // fallback se non ci sono dati
+        setProjectData({ technologies: [], tags: [] });
       }
-    };
-    loadStoredData();
-  }, []);
+    } catch (error) {
+      console.error("Errore durante il recupero dei dati", error);
+      setProjectData({ technologies: [], tags: [] });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  loadStoredData();
+}, []);
 
   return (
     <>
@@ -237,7 +255,7 @@ export default function ProjectDetails() {
         </div>
       </div>
 
-      <CarouselMedia />
+      <CarouselMedia media={media} />
     </>
   );
 }

@@ -57,11 +57,19 @@ const storage = new CloudinaryStorage({
     },
     // Aggiungi tag per migliore organizzazione
     tags: (req, file) => {
-      const baseTags = ["portfolio", "project"];
+      const baseTags = ["portfolio"];
+
+      // Aggiunta di tag personalizzati da frontend
+      const customTags = req.body.tags
+        ? Array.isArray(req.body.tags)
+          ? req.body.tags
+          : req.body.tags.split(",").map((tag) => tag.trim())
+        : [];
+
       if (file.mimetype.startsWith("video/")) {
-        return [...baseTags, "video"];
+        return [...baseTags, "video", ...customTags];
       } else {
-        return [...baseTags, "image"];
+        return [...baseTags, "image", ...customTags];
       }
     },
   },
