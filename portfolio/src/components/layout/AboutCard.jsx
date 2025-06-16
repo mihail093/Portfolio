@@ -5,7 +5,7 @@ import { IoSchool } from 'react-icons/io5';
 import { MdOutlineWebAsset, MdOutlinePsychology } from 'react-icons/md';
 
 export default function AboutCard({ type, title, content }) {
-    const imgProfileID = "68279980e55d92ac79485413";
+    const imgProfileID = "685070a770324877aa850d08";
 
     // useState per salvare i dati dell'immagine
     const [imgProfile, setImgProfile] = useState(null);

@@ -14,7 +14,7 @@ export default function AdminLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const BACKGROUND_IMAGE_ID = "68309713c92df25742d9240c";
+  const BACKGROUND_IMAGE_ID = "68506e9c70324877aa850cfc";
   const [backgroundImgUrl, setBackgroundImgUrl] = useState(null);
 
   useEffect(() => {

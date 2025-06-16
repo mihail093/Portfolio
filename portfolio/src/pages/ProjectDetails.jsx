@@ -21,7 +21,8 @@ export default function ProjectDetails() {
 
   // useState per salvare i dati
   const [projectData, setProjectData] = useState({ technologies: [], tags: [] });
-  const [media, setMedia] = useState([]);
+  const [images, setImages] = useState([]);
+  const [videos, setVideos] = useState([]);
 
   useEffect(() => {
   const loadStoredData = async () => {
@@ -49,7 +50,17 @@ export default function ProjectDetails() {
           try {
             const mediaData = await mediaService.getMediaByTags(newProjectData.tags);
             if (mediaData && mediaData.data && Array.isArray(mediaData.data)) {
-              setMedia(mediaData.data);
+              // Filtra immagini e video
+              const imageData = mediaData.data.filter(
+                (item) => item.mediaType === "image"
+              );
+              const videoData = mediaData.data.filter(
+                (item) => item.mediaType === "video"
+              );
+
+              // Salva nei rispettivi useState
+              setImages(imageData);
+              setVideos(videoData);
             }
           } catch (error) {
             console.error("Errore nel caricamento dei media", error);
@@ -255,7 +266,7 @@ export default function ProjectDetails() {
         </div>
       </div>
 
-      <CarouselMedia media={media} />
+      <CarouselMedia images={images} videos={videos} />
     </>
   );
 }

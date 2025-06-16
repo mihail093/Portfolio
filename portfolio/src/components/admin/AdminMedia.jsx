@@ -5,8 +5,8 @@ import AdminOtherMedia from "./AdminOtherMedia";
 import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 
 export default function AdminMedia() {
-  const CARD_PROJECTS_BG_ID = "68276587e55d92ac7948532b";
-  const CARD_OTHER_BG_ID = "682765aee55d92ac7948532e";
+  const CARD_PROJECTS_BG_ID = "68506f3870324877aa850d03";
+  const CARD_OTHER_BG_ID = "68506ee370324877aa850d00";
 
   // Flag per prevenire doppie chiamate
   const hasFetched = useRef(false);
