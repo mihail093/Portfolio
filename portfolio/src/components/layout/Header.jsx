@@ -2,12 +2,10 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { easeInOut, motion } from 'framer-motion';
 import { HomeIcon, BookOpenIcon, InformationCircleIcon, AtSymbolIcon } from "@heroicons/react/20/solid";
-import headerImg from "../../assets/images/headerImg.png";
-import headerTexture from "../../assets/images/headerTexture.jpg";
 import { useTheme } from '../../context/ThemeContext';
 import "./Header.css";
 
-export default function Header() {
+export default function Header({headerImg, headerTextureImg}) {
     // Ottiene l'oggetto location dall'hook useLocation per accedere al pathname corrente
     const location = useLocation();
 
@@ -62,7 +60,7 @@ export default function Header() {
                                 y="10"
                             >
                                 <image
-                                    href={headerTexture}
+                                    href={headerTextureImg.mediaUrl}
                                     width="380"
                                     height="380"
                                     preserveAspectRatio="xMidYMid slice"
@@ -217,7 +215,7 @@ export default function Header() {
                                 y="20"
                             >
                                 <image
-                                    href={headerImg}
+                                    href={headerImg.mediaUrl}
                                     width="160"
                                     height="160"
                                     preserveAspectRatio="xMidYMid slice"
