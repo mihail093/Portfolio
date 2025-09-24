@@ -98,7 +98,7 @@ export default function HeroCards({ featuredProjects }) {
               text-md font-lobster py-1
               ${selectedCard === "c1" && featuredProjects[3] ? "cursor-pointer hover:text-[#fdee00]/60" : ""}
             `}
-            onClick={selectedCard === "c1" && featuredProjects[3] ? () => handleButtonClick() : undefined}
+            onClick={selectedCard === "c1" && featuredProjects[3] ? () => handleButtonClick(3) : undefined}
           >
             {featuredProjects[3] ? featuredProjects[3].title : "Coming Soon"}
           </h3>
@@ -132,7 +132,7 @@ export default function HeroCards({ featuredProjects }) {
               text-md font-lobster py-1
               ${selectedCard === "c2" && featuredProjects[2] ? "cursor-pointer hover:text-[#00171f]/60" : ""}
             `}
-            onClick={selectedCard === "c2" && featuredProjects[2] ? () => handleButtonClick() : undefined}
+            onClick={selectedCard === "c2" && featuredProjects[2] ? () => handleButtonClick(2) : undefined}
           >
             {featuredProjects[2] ? featuredProjects[2].title : "Coming Soon"}
           </h3>
@@ -166,7 +166,7 @@ export default function HeroCards({ featuredProjects }) {
               text-md font-lobster py-1
               ${selectedCard === "c3" && featuredProjects[1] ? "cursor-pointer hover:text-[#b7ff00]/60" : ""}
             `}
-            onClick={selectedCard === "c3" && featuredProjects[1] ? () => handleButtonClick() : undefined}
+            onClick={selectedCard === "c3" && featuredProjects[1] ? () => handleButtonClick(1) : undefined}
           >
             {featuredProjects[1] ? featuredProjects[1].title : "Coming Soon"}
           </h3>
@@ -200,7 +200,7 @@ export default function HeroCards({ featuredProjects }) {
               text-md font-lobster py-1
               ${selectedCard === "c4" && featuredProjects[0] ? "cursor-pointer hover:text-white/60" : ""}
             `}
-            onClick={selectedCard === "c4" && featuredProjects[0] ? () => handleButtonClick() : undefined}
+            onClick={selectedCard === "c4" && featuredProjects[0] ? () => handleButtonClick(0) : undefined}
           >
             {featuredProjects[0] ? featuredProjects[0].title : "Coming Soon"}
           </h3>

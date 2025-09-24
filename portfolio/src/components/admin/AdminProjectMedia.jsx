@@ -110,7 +110,7 @@ export default function AdminProjectMedia({ projectMedia, onMediaRemoved }) {
             </h3>
 
             {item.mediaType === "image" ? (
-              <>
+              <div className="flex flex-col justify-between h-full">
                 <div className="relative group cursor-pointer w-full min-h-[80px]">
                   <ResponsiveCloudinaryImage
                     imageUrl={item.mediaUrl}
@@ -136,9 +136,9 @@ export default function AdminProjectMedia({ projectMedia, onMediaRemoved }) {
                 >
                   Rimuovi
                 </button>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="flex flex-col justify-between h-full">
                 <div className="flex flex-col justify-between group cursor-pointer w-full min-h-[80px]">
                   <VideoWithThumbnail
                     videoUrl={item.mediaUrl}
@@ -164,7 +164,7 @@ export default function AdminProjectMedia({ projectMedia, onMediaRemoved }) {
                 >
                   Rimuovi
                 </button>
-              </>
+              </div>
             )}
           </div>
         ))}

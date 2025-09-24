@@ -1,9 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { projectService } from '../../services/apiService';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Fish } from '../../assets/svg';
 import { SpeechBubble, Button, HeroCards } from '../ui';
-import { useInView } from 'framer-motion';
 
 export default function Hero({ clicked, setClicked, backClicked, setBackClicked }) {
   // Le const ref e ref2 vengono utilizzate per <motion.div> sfruttando useInView per animare gli elementi figli
@@ -20,7 +19,7 @@ export default function Hero({ clicked, setClicked, backClicked, setBackClicked 
     amount: 1,
   });
 
-  // useState per salvare i progetti in evidenza passiti a HeroCards
+  // useState per salvare i progetti in evidenza passati a HeroCards
   const [featuredProjects, setFeaturedProjects] = useState([]);
 
   useEffect(() => {

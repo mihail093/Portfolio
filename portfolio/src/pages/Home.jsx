@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Hero from '../components/layout/Hero';
-import TerminalQuest from '../components/layout/TerminalQuest';
+import CodeQuest from '../components/layout/CodeQuest';
 
 export default function Home() {
   /*
@@ -22,7 +22,7 @@ export default function Home() {
         backClicked={backClicked} 
         setBackClicked={setBackClicked} 
       />
-      {!clicked && <TerminalQuest />}
+      {!clicked && <CodeQuest />}
     </>
   )
 }

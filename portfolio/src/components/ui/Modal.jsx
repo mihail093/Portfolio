@@ -33,8 +33,8 @@ export default function Modal({
   showCloseButton = true,
   onConfirm,
   onCancel,
-  confirmText = "Conferma",
-  cancelText = "Annulla",
+  confirmText = "Confirm",
+  cancelText = "Cancel",
   isLoading = false,
   showActions = false,
 }) {

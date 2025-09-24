@@ -40,7 +40,7 @@ export default function Header({headerImg, headerTextureImg}) {
     ], []);
 
     return (
-        <div className={`flex items-center justify-center min-h-[64vh] p-4 ${isDark ? 'dark-mode' : 'light-mode'}`}>
+        <div className={`flex items-center justify-center min-h-[64vh] mainDiv ${isDark ? 'dark-mode' : 'light-mode'}`}>
             <div className="relative w-[300px] h-[300px] sm:w-[400px] sm:h-[400px]">
                 <div className="absolute inset-0">
                     <motion.svg 

@@ -16,6 +16,13 @@
     font-size: 2rem;
 }
 
+.mainDiv {
+    border: 30px solid transparent;
+    border-image-source: url("https://res.cloudinary.com/dwnkntjx2/image/upload/v1758746176/portfolio/bhzbraobdgtymjefktlz.jpg");
+    border-image-slice: 90;
+    border-image-repeat: round;
+}
+
 /*Bottone tema light/dark*/
 #checkbox {
     display: none;
