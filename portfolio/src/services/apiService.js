@@ -15,13 +15,13 @@ const api = axios.create({
 // Intercettore di richiesta per logging
 api.interceptors.request.use(
   (config) => {
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.NODE_ENV === "development") {
       console.log(`API Request: ${config.method.toUpperCase()} ${config.url}`);
     }
     return config;
   },
   (error) => {
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.NODE_ENV === "development") {
       console.error("API Request Error:", error);
     }
     return Promise.reject(error);
@@ -31,7 +31,7 @@ api.interceptors.request.use(
 // Intercettore di risposta per logging e gestione errori
 api.interceptors.response.use(
   (response) => {
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.NODE_ENV === "development") {
       console.log(
         `API Response from ${response.config.url}: Status ${response.status}`
       );
@@ -52,7 +52,7 @@ api.interceptors.response.use(
       }
     }
 
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.NODE_ENV === "development") {
       console.error(
         "API Response Error:",
         error.response?.status || "Unknown",

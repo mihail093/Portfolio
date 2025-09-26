@@ -24,7 +24,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: import.meta.env.CLIENT_URL || 'http://localhost:5173',
     credentials: true // Importante per i cookie tra domini diversi
 }));
 
@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 });
 
 // Variabile per la porta del server
-const PORT = process.env.PORT || 5000;
+const PORT = import.meta.env.PORT || 5000;
 
 // Avvio il server dopo la connessione al database
 app.listen(PORT, async () => {
