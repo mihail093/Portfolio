@@ -79,7 +79,7 @@ export default function Hero({ clicked, setClicked, backClicked, setBackClicked 
             delay: 0.3,
           }}
         >
-          Well
+          Wel
         </motion.span>
       </div>
       <div className="flex justify-center align-center flex-col text-center">
