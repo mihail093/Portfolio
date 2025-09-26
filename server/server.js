@@ -33,6 +33,15 @@ app.get('/', (req, res) => {
     res.send('API del Portfolio attiva e funzionante!');
 });
 
+// Health check per il deployment
+app.get('/health', (req, res) => {
+    res.status(200).json({ 
+        success: true, 
+        message: 'Server is running!',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Monta le route API
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
