@@ -3,7 +3,7 @@ import AboutCard from "../components/layout/AboutCard";
 import { ResponsiveCloudinaryImage } from "../components/ui";
 import { mediaService } from "../services/apiService";
 import { useTheme } from "../context/ThemeContext";
-import { ArrowRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { ArrowRightIcon, ArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import "./About.css";
 
 export default function About() {
@@ -108,8 +108,12 @@ export default function About() {
                 </li>
                 <li>Responsive personal portfolio</li>
                 <li>
-                  <span className="inline-flex items-center">
-                    Other minor projects <ArrowRightIcon className="w-6 px-1" />{" "}
+                  <span className="block md:inline-flex">
+                    Other minor projects 
+                    <span className="flex">
+                      <ArrowRightIcon className="w-6 px-1 hidden md:block" />
+                      <ArrowDownIcon className="w-8 px-2 block md:hidden" />
+                    </span>
                     check out my
                     <a
                       href="https://github.com/mihail093"
@@ -251,7 +255,7 @@ export default function About() {
         />
       </div>
       {isClicked &&
-        <div className="main-container sticky bottom-[10%] left-[22%] z-50 bg-white border-2 border-[#23103e]">
+        <div className="main-container z-50 bg-white border-2 border-[#23103e]">
           <div className="w-full flex justify-end">
             <XMarkIcon 
               className="w-6 m-2 text-black cursor-pointer hover:text-gray-600"

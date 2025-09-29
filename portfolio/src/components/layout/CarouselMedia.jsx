@@ -198,10 +198,9 @@ export default function CarouselMedia({ images, videos }) {
     <>
       {isAnyVideo && (
         <div className="w-full flex justify-center">
-          <div className="w-1/2">
             {videos.map((item) => (
-              <div className="w-full my-6">
-                <h2 className="text-xs md:text-lg lg:text-xl font-lobster font-bold text-center">
+              <div className="w-full md:w-1/2 lg:1/4 my-6 px-2">
+                <h2 className="text-xl font-lobster font-bold text-center">
                   {item.title}
                 </h2>
                 <VideoWithThumbnail
@@ -211,11 +210,15 @@ export default function CarouselMedia({ images, videos }) {
                 />
               </div>
             ))}
-          </div>
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row justify-center items-center gap-2 p-2 mt-6 w-full max-w-8xl mx-auto z-10">
+      <div 
+        className="
+          flex flex-col md:flex-row justify-center items-center 
+          md:gap-2 md:p-2 mt-6 w-full max-w-8xl mx-auto z-10
+        "
+      >
         {/* Controllo cambio Card (sinistra) */}
         <div
           className={`
@@ -240,7 +243,8 @@ export default function CarouselMedia({ images, videos }) {
           />
           <ChevronLeftIcon
             className={`
-              absolute top-[8px] left-[12px] sm:top-[16px] sm:left-[16px] w-6 h-6 sm:w-8 sm:h-8 lg:left-[24px] lg:w-12 lg:h-12 transition-all duration-200 group-hover:scale-110
+              absolute top-[8px] left-[12px] sm:top-[16px] sm:left-[16px] w-6 h-6 sm:w-8 sm:h-8 lg:left-[24px] lg:w-12 lg:h-12 
+              transition-all duration-200 group-hover:scale-110
               ${
                 isFlippingLeft || isFlippingRight || cardsIndex.isDisabled
                   ? "text-gray-400"
@@ -251,7 +255,7 @@ export default function CarouselMedia({ images, videos }) {
         </div>
 
         {images.length > 0 ? (
-          <div className="flex justify-center items-center gap-6 w-full h-[420px] px-2">
+          <div className="flex justify-center items-center w-full h-[420px] px-2">
             {/* Card nascosta sinistra */}
             <motion.div
               initial={{
@@ -282,7 +286,7 @@ export default function CarouselMedia({ images, videos }) {
                     }
               }
               transition={isFlippingRight ? animationConfig : { duration: 0 }}
-              className="w-1/8 h-1/4"
+              className="hidden lg:block w-1/6 h-1/4"
             >
               <ResponsiveCloudinaryImage
                 imageUrl={getImageSrc(cardsIndex.hiddenLeftIndex)}
@@ -336,7 +340,7 @@ export default function CarouselMedia({ images, videos }) {
                   ? animationConfig
                   : { duration: 0 }
               }
-              className="w-1/8 h-1/4 cursor-pointer"
+              className="hidden lg:block w-1/6 h-1/4 cursor-pointer"
               onClick={handleLeftCardClick}
             >
               <ResponsiveCloudinaryImage
@@ -379,10 +383,10 @@ export default function CarouselMedia({ images, videos }) {
                   ? animationConfig
                   : { duration: 0 }
               }
-              className="w-1/2 h-auto cursor-pointer"
+              className="w-full h-auto cursor-pointer"
               onClick={handleCenterCardClick}
             >
-              <h2 className="text-xs md:text-lg font-montserrat font-bold text-center">
+              <h2 className="text-xl font-montserrat font-bold text-center">
                 {cardsIndex.centerIndex !== null
                   ? images[cardsIndex.centerIndex].title
                   : "Titolo"}
@@ -439,7 +443,7 @@ export default function CarouselMedia({ images, videos }) {
                   ? animationConfig
                   : { duration: 0 }
               }
-              className="w-1/8 h-1/4 cursor-pointer"
+              className="hidden lg:block w-1/6 h-1/4 cursor-pointer"
               onClick={handleRightCardClick}
             >
               <ResponsiveCloudinaryImage
@@ -479,7 +483,7 @@ export default function CarouselMedia({ images, videos }) {
                     }
               }
               transition={isFlippingLeft ? animationConfig : { duration: 0 }}
-              className="w-1/8 h-1/4"
+              className="hidden lg:block w-1/6 h-1/4"
             >
               <ResponsiveCloudinaryImage
                 imageUrl={getImageSrc(cardsIndex.hiddenRightIndex)}

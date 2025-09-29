@@ -48,7 +48,7 @@ const CodeQuest = () => {
     setHistory(prev => [...prev, { type: 'command', content: currentCommand }]);
 
     // Verifica se la risposta è corretta o meno e aggiorna la cronologia
-    if (currentCommand === levels[currentLevel].command) {
+    if (currentCommand === levels[currentLevel].command || levels[currentLevel].command.includes(currentCommand)) {
       setHistory(prev => [...prev, { type: 'success', content: levels[currentLevel].success }]);
       
       if (errors === 0) {
@@ -170,7 +170,7 @@ const CodeQuest = () => {
               type="button"
               disabled={lastLevel}
               className={
-                `bg-blue-600 text-white px-4 py-2 rounded
+                `bg-blue-600 text-white text-sm px-4 py-2 rounded
                 ${lastLevel ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700 active:bg-blue-800"}`
               }
               onClick={() => {
@@ -201,7 +201,7 @@ const CodeQuest = () => {
         </div>
         {/* Input Area */}
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className='flex justify-between items-center pe-4'>
             {errors === 0 ? (
               <div className='flex items-center p-2'>
                 <FaHeart className='w-8 h-8 px-1 text-red-600' />
@@ -226,6 +226,18 @@ const CodeQuest = () => {
                 <FaHeartBroken className='w-8 h-8 px-1 text-red-600' />
                 <FaHeartBroken className='w-8 h-8 px-1 text-red-600' />
               </div>
+            )}
+            {levels[currentLevel].multipleChoice === false && (
+              <button
+                type="submit"
+                disabled={lastLevel}
+                className={
+                  `bg-blue-600 text-white px-4 py-2 rounded text-sm
+                  ${lastLevel ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700 active:bg-blue-800"}`
+                }
+              >
+                Send
+              </button>
             )}
           </div>
           {levels[currentLevel].multipleChoice? (
@@ -264,25 +276,17 @@ const CodeQuest = () => {
               </button>
             </div>
           ) : (
-            <div className="bg-gray-800 p-4 flex items-center gap-2">
-              <textarea
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="bg-transparent text-gray-200 font-mono focus:outline-none w-full resize-none h-24 rounded"
-                placeholder="Rewrite the code correctly..."
-                rows={5}
-              />
-              <button
-                type="submit"
-                disabled={lastLevel}
-                className={
-                  `bg-blue-600 text-white px-4 py-2 rounded  
-                  ${lastLevel ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-700 active:bg-blue-800"}`
-                }
-              >
-                Send
-              </button>
-            </div>
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="
+                w-full h-24 resize-none p-4
+                text-gray-200 whitespace-pre overflow-x-auto text-sm font-mono 
+                bg-gray-800 focus:outline-none rounded
+              "
+              placeholder="Rewrite the code correctly..."
+              rows={5}
+            />
           )}
         </form>
       </div>

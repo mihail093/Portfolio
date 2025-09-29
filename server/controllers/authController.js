@@ -7,9 +7,9 @@ exports.createInitialAdmin = async () => {
         const adminExists = await Admin.countDocuments();
 
         if(adminExists === 0) {
-            const adminEmail = import.meta.env.ADMIN_EMAIL;
-            const adminPassword = import.meta.env.ADMIN_PASSWORD;
-            const adminName = import.meta.env.ADMIN_NAME;
+            const adminEmail = process.env.ADMIN_EMAIL;
+            const adminPassword = process.env.ADMIN_PASSWORD;
+            const adminName = process.env.ADMIN_NAME;
 
             if (!adminEmail || !adminPassword || !adminName) {
                 console.log("Controlla le variabili d'ambiente");
@@ -70,7 +70,7 @@ exports.loginAdmin = async (req, res) => {
         // Salva il token in un cookie HTTP-only
         res.cookie('token', token, {
             httpOnly: true,
-            secure: import.meta.env.NODE_ENV === 'production',
+            secure: process.env.NODE_ENV === 'production',
             maxAge: 24 * 60 * 60 * 1000 // 1 giorno
         });
 

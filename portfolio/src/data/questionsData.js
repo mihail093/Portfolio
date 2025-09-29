@@ -45,7 +45,10 @@ export const levels = [
   {
     info: "Find the error and correctly rewrite the following code",
     task: `<div class="container" class="main">Content</div>`,
-    command: `<div class="container main">Content</div>`,
+    command: [
+  `<div class="container main">Content</div>`,
+  `<div class="main container">Content</div>`
+    ],
     multipleChoice: false,
     success: "Great job, that class was duplicated.",
     hint: "Check that class.",
@@ -54,10 +57,10 @@ export const levels = [
   {
     info: "Find the error and correctly rewrite the following code",
     task: `<p>
-    <div>Incorrect nesting</div>
+  <div>Incorrect nesting</div>
 </p>`,
     command: `<div>
-    <p>Incorrect nesting</p>
+  <p>Incorrect nesting</p>
 </div>`,
     multipleChoice: false,
     success: "Great!",
@@ -147,30 +150,30 @@ var userName = "Alice";`,
   {
     info: "Find the error and correctly rewrite the following code",
     task: `function test() {
-    if (true) {
-        var x = 1;
-    }
-    console.log(x);
+  if (true) {
+      var x = 1;
+  }
+  console.log(x);
 }
 
 function test2() {
-    if (true) {
-        let y = 1;
-    }
-    console.log(y);
+  if (true) {
+      let y = 1;
+  }
+  console.log(y);
 }`,
     command: `function test() {
-    if (true) {
-        var x = 1;
-    }
-    console.log(x);
+  if (true) {
+      var x = 1;
+  }
+  console.log(x);
 }
 
 function test2() {
-    if (true) {
-        var y = 1;
-    }
-    console.log(y);
+  if (true) {
+      var y = 1;
+  }
+  console.log(y);
 }`,
     multipleChoice: false,
     success: "Well done, y is not accessible outside the if block.",
@@ -181,8 +184,9 @@ function test2() {
     info: "Find the error and correctly rewrite the following code",
     task: `<label>Nome utente</label>
 <input type="text" id="username">`,
-    command: `<label for="username">Nome utente</label>
-<input type="text" id="username">`,
+    command: [`<label for="username">Nome utente</label>
+<input type="text" id="username">`, `<label for='username'>Nome utente</label>
+<input type="text" id="username">`],
     multipleChoice: false,
     success: "Perfect, that works!",
     hint: "Something is missing from that label.",
