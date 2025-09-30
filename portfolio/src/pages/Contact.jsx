@@ -43,10 +43,10 @@ export default function Contact() {
         transition={{ duration: 1.2 }}
       >
         <h1 className='text-center font-lobster text-5xl select-none'>Let's get in touch</h1>
-        <div className='p-10 space-y-4'>
+        <div className='p-6 space-y-4'>
           <div>
-            <BsMailbox2Flag className='inline-block text-4xl me-4'/>
-            <span className='font-montserrat text-lg'>rmihajlo800@gmail.com</span>
+            <BsMailbox2Flag className='inline-block text-4xl me-2'/>
+            <span className='font-montserrat text-sm'>rmihajlo800@gmail.com</span>
           </div>
           <div>
             <FaGithubAlt className='inline-block text-4xl me-4' />

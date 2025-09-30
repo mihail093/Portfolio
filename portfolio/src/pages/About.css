@@ -1,50 +1,55 @@
 .main-container {
-    position: sticky;
-    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
     max-width: 840px;
-    height: auto;
-    left: 22%;
-    bottom: 10%;
-    margin: 0 auto;
+    max-height: 90vh;
+    overflow-y: auto;
     animation: visual 0.5s ease-out;
 }
 
 @media (max-width: 1200px) {
     .main-container {
         max-width: 800px;
-        left: 1%;
+        width: 85%;
+    }
+}
+
+@media (max-height: 600px) {
+    .main-container {
+        max-width: 540px;
+        width: 95%;
+        max-height: 85vh;
     }
 }
 
 @media (max-width: 768px) {
     .main-container {
         max-width: 400px;
-        left: 2%;
-        bottom: 16%;
+        width: 90%;
     }
 }
 
 @media (max-width: 480px) {
     .main-container {
-        max-width: 200px;
-        bottom: 36%;
+        max-width: 300px;
+        width: 95%;
     }
 }
 
 @keyframes visual {
     0% {
-        width: 0px;
         opacity: 0;
-        transform: scale(0.8);
+        transform: translate(-50%, -50%) scale(0.8);
     }
     50% {
-        width: 50%;
         opacity: 0.7;
-        transform: scale(1.8);
+        transform: translate(-50%, -50%) scale(1.05);
     }
     100% {
-        width: 100%;
         opacity: 1;
-        transform: scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
 }

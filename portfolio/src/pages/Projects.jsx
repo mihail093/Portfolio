@@ -123,7 +123,7 @@ export default function Projects() {
 
         {/* Layer 6: Alert */}
         <div className='relative z-50'>
-          {isDark && <Alert label='Click the cloud to make it rain and wake up Joe' />}
+          {isDark && <Alert label='Click the cloud to wake up Joe' />}
         </div>
       </div>
     </div>

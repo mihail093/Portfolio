@@ -36,6 +36,18 @@ export default function About() {
     fetchImgData();
   }, []);
 
+  useEffect(() => {
+    if (isClicked) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isClicked]);
+
   const { isDark } = useTheme();
 
   return (

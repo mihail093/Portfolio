@@ -1,24 +1,27 @@
 .sun {
+    width: 60px;
+    height: 60px;
+    left: 40px;
     background: #ffd000;
     box-shadow: 0 0 50px #ff6b6b, 0 0 100px #ffaa33, 0 0 150px #ff8800;
     animation: glow 3s infinite alternate;
 }
    
 .moon {
+    width: 80px;
+    height: 80px;
+    right: 240px;
     background: #ffffff;
     box-shadow: inset -25px -25px 40px #b8b8b8, 0 0 20px #ffffff, 0 0 40px #d4d4d4;
     animation: moonGlow 4s infinite alternate;
 }
 
 .sun, .moon{
-    width: 100px;
-    height: 100px;
+    top: 20px;
     border-radius: 50%;
     position: absolute;
-    top: 100px;
-    right: 80px;
 }
-    
+
 @keyframes glow {
     from {
         box-shadow: 0 0 50px #ff6b6b, 0 0 100px #ffaa33;

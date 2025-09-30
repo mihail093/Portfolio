@@ -195,7 +195,7 @@ export default function CarouselMedia({ images, videos }) {
   };
 
   return (
-    <>
+    <div className={`${isFlippingRight || isFlippingLeft ? "overflow-hidden" : "overflow-auto"}`}>
       {isAnyVideo && (
         <div className="w-full flex justify-center">
             {videos.map((item) => (
@@ -532,6 +532,6 @@ export default function CarouselMedia({ images, videos }) {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
