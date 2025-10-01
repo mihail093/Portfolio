@@ -106,7 +106,7 @@ export default function Hero({ clicked, setClicked, backClicked, setBackClicked 
           transition={{ duration: 0.6 }}
         >
           {clicked ? 
-          <div className='py-20'>
+          <div className='pb-6'>
             <div className='flex justify-center align-center pb-[5.8em]'>
               <HeroCards featuredProjects={featuredProjects} />
             </div>

@@ -54,11 +54,7 @@
 }
 
 .selected {
-  left: 50%;
-  top: 35%;
-  transform: translate(-50%, -50%) scale(1.9) rotate(0deg) !important;
-  z-index: 10;
-  cursor: default;
+  border: 2px solid #f72585;
 }
 
 .selected .xicon:hover {
