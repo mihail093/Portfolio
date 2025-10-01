@@ -91,7 +91,7 @@ export default function HeroCards({ featuredProjects }) {
 
   return (
     <div>
-      <h3 className="text-lg font-lobster">
+      <h3 className="text-sm sm:text-lg md:text-xl lg:text-2xl font-lobster">
         These are my featured projects
       </h3>
       <div
