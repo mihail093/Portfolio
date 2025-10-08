@@ -7,6 +7,8 @@ import {
   FolderIcon,
   PhotoIcon,
   PuzzlePieceIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
 } from "@heroicons/react/24/outline";
 
 export default function AdminLayout() {
@@ -16,6 +18,8 @@ export default function AdminLayout() {
 
   const BACKGROUND_IMAGE_ID = "68506e9c70324877aa850cfc";
   const [backgroundImgUrl, setBackgroundImgUrl] = useState(null);
+
+  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   useEffect(() => {
     const fetchBackgroundImage = async () => {
@@ -53,82 +57,100 @@ export default function AdminLayout() {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Sidebar - larghezza fissa */}
-      <div className="w-64 bg-white shadow-lg flex flex-col">
-        {/* Header della sidebar */}
-        <div className="flex h-16 items-center px-6 border-b border-gray-200">
-          <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
-        </div>
+      {/* Sidebar */}
+      {isSidebarVisible && (
+        <div className="w-36 lg:w-64 bg-white shadow-lg flex flex-col">
+          {/* Header della sidebar */}
+          <div className="flex h-16 items-center px-6 border-b border-gray-200">
+            <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
+          </div>
 
-        {/* Navigazione principale */}
-        <nav className="mt-8 flex-1 px-3">
-          <div className="space-y-1">
-            {navigation.map((item) => {
-              const current = location.pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`${
-                    current
-                      ? "bg-indigo-100 text-indigo-700"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                  } group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200`}
-                >
-                  <item.icon
+          {/* Navigazione principale */}
+          <nav className="relative mt-8 flex-1 px-3">
+            <div className="space-y-1">
+              {navigation.map((item) => {
+                const current = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
                     className={`${
-                      current ? "text-indigo-500" : "text-gray-400"
-                    } mr-3 h-5 w-5 transition-colors duration-200`}
-                    aria-hidden="true"
-                  />
-                  {item.name}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-
-        {/* Informazioni utente - fissate in basso */}
-        <div className="p-4 border-t border-gray-200 bg-gray-50">
-          <div className="flex items-center">
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 truncate">
-                {admin?.name || "Admin"}
-              </p>
-              <p className="text-xs text-gray-500 truncate">
-                {admin?.email || "admin@example.com"}
-              </p>
+                      current
+                        ? "bg-indigo-100 text-indigo-700"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    } group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200`}
+                  >
+                    <item.icon
+                      className={`${
+                        current ? "text-indigo-500" : "text-gray-400"
+                      } mr-3 h-5 w-5 transition-colors duration-200`}
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </Link>
+                );
+              })}
             </div>
-            <button
-              onClick={handleLogout}
-              className="ml-3 text-gray-400 hover:text-red-600 transition-colors duration-200 p-1 rounded-md hover:bg-red-50"
-              title="Logout"
-            >
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
+            {isSidebarVisible &&
+              <ArrowLeftIcon 
+                className="
+                  absolute w-10 p-1 right-0 top-1/3 lg:hidden rounded-full bg-gray-300
+                  active:scale-75 transition-transform duration-150
+                " 
+                onClick={() => setIsSidebarVisible(false)}
+              />
+            }
+          </nav>
+
+          {/* Informazioni utente - fissate in basso */}
+          <div className="p-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center">
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 truncate">
+                  {admin?.name || "Admin"}
+                </p>
+                <p className="text-xs text-gray-500 truncate">
+                  {admin?.email || "admin@example.com"}
+                </p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="ml-3 text-gray-400 hover:text-red-600 transition-colors duration-200 p-1 rounded-md hover:bg-red-50"
+                title="Logout"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-            </button>
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main content area - occupa tutto lo spazio rimanente */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <div className="relative flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Content wrapper con padding e scroll */}
-        <div className="flex-1 py-6 px-8 overflow-auto">
-          <div className="h-full">
-            <Outlet />
-          </div>
+        <div className="flex-1 h-full py-6 px-8 overflow-auto">
+          <Outlet />
+          {!isSidebarVisible &&
+            <ArrowRightIcon 
+              className="
+                absolute w-10 p-1 left-0 top-1/3 lg:hidden rounded-full bg-white/80 
+                active:scale-75 transition-transform duration-150
+              "
+              onClick={() => setIsSidebarVisible(true)}
+            />
+          }
         </div>
       </div>
     </div>

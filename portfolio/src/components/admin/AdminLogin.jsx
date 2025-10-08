@@ -58,7 +58,11 @@ export default function AdminLogin() {
         <div className="min-h-[40px]">
           {error ? (
             <SimpleAlert message={error} type="error" duration={0} />
-          ) : (
+          ) : loading ? (
+            <div className="flex justify-start items-center h-10">
+              <div className="w-5 h-5 rounded-full border-b-2 border-white animate-spin"/>
+            </div>
+            ) : (
             <SimpleAlert message={"This area is restricted to the administrator"} type="info" duration={0} />
           )}
         </div>
