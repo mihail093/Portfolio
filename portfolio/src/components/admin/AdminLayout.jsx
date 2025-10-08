@@ -93,10 +93,7 @@ export default function AdminLayout() {
             </div>
             {isSidebarVisible &&
               <ArrowLeftIcon 
-                className="
-                  absolute w-10 p-1 right-0 top-1/3 lg:hidden rounded-full bg-gray-300
-                  active:scale-75 transition-transform duration-150
-                " 
+                className="absolute w-10 p-1 right-0 bottom-1/3 md:bottom-0 lg:hidden rounded-full bg-gray-300" 
                 onClick={() => setIsSidebarVisible(false)}
               />
             }
@@ -144,10 +141,7 @@ export default function AdminLayout() {
           <Outlet />
           {!isSidebarVisible &&
             <ArrowRightIcon 
-              className="
-                absolute w-10 p-1 left-0 top-1/3 lg:hidden rounded-full bg-white/80 
-                active:scale-75 transition-transform duration-150
-              "
+              className="absolute w-10 p-1 left-0 top-1/2 lg:hidden rounded-full bg-white/80"
               onClick={() => setIsSidebarVisible(true)}
             />
           }
