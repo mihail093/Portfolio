@@ -21,9 +21,6 @@ export default function AdminMedia() {
   const [otherMedia, setOtherMedia] = useState([]);
   const [projectMedia, setProjectMedia] = useState([]);
 
-  // useState per gestire il caricamento
-  const [loading, setLoading] = useState(true);
-
   // useState per gestire il click sulle cards
   const [cardProjectMedia, setCardProjectMedia] = useState(false);
   const [cardOtherMedia, setCardOtherMedia] = useState(false);
@@ -36,7 +33,6 @@ export default function AdminMedia() {
 
     const fetchMediaData = async () => {
       try {
-        setLoading(true);
         hasFetched.current = true; // Marca come eseguito
 
         const mediaData = await mediaService.getMedia();
@@ -72,8 +68,6 @@ export default function AdminMedia() {
       } catch (error) {
         console.error("Errore nel caricamento dei dati", error);
         hasFetched.current = false; // Reset del flag in caso di errore
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -104,14 +98,6 @@ export default function AdminMedia() {
       setOtherMedia((prev) => prev.filter((item) => item._id !== removedId));
     }
   };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-500"></div>
-      </div>
-    );
-  }
 
   return (
     <>

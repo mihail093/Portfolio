@@ -17,7 +17,6 @@ export default function AdminDashboard() {
     totalMedia: 0,
     recentProjects: [],
   });
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -26,7 +25,6 @@ export default function AdminDashboard() {
 
   const loadDashboardData = async () => {
     try {
-      setLoading(true);
       setError(null);
 
       // Carica statistiche progetti
@@ -41,8 +39,6 @@ export default function AdminDashboard() {
     } catch (error) {
       setError("Errore nel caricamento della dashboard.");
       console.error("Errore nel caricamento della dashboard:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -78,14 +74,6 @@ export default function AdminDashboard() {
       )}
     </div>
   );
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-500"></div>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto px-2 sm:px-4 md:px-8 space-y-6">

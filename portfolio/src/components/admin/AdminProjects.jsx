@@ -15,9 +15,6 @@ export default function AdminProjects() {
   // useState per salvare tutti i dati dei progetti (dati passati come prop ad AdminProjectDetailsComponent)
   const [projects, setProjects] = useState([]);
 
-  // useState per gestire il caricamento
-  const [loading, setLoading] = useState(true);
-
   // useState per gestire il progetto selezionato per i dettagli
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -30,8 +27,6 @@ export default function AdminProjects() {
   useEffect(() => {
     const fetchProjectsData = async () => {
       try {
-        setLoading(true);
-
         const projectsData = await projectService.getProjects();
         if (
           projectsData &&
@@ -68,8 +63,6 @@ export default function AdminProjects() {
         }
       } catch (error) {
         console.error("Errore nel caricamento dei dati", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -119,14 +112,6 @@ export default function AdminProjects() {
       setIsRemoving(false);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-500"></div>
-      </div>
-    );
-  }
 
   // Gestisci il caso quando non ci sono progetti
   if (projects.length === 0) {
