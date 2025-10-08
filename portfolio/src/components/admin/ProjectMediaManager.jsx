@@ -64,17 +64,17 @@ const ProjectMediaManager = () => {
 
   return (
     <div className="max-w-4xl bg-black/40 rounded-md mx-auto py-2 px-1 sm:py-4 sm:px-2">
-      {/* Bottone per alternare tra i form */}
-      <Button
-        handleClick={handleToggleForm}
-        label={step === 1 ? "carica media" : "carica progetto"}
-      />
-
       {/* Mostra messaggi con SimpleAlert */}
       <SimpleAlert
         message={message.text || "Caricamento..."}
         type={message.type}
         duration={0} // Non scompare automaticamente (di default anche SimpleAlert ha duration = 5000)
+      />
+
+      {/* Bottone per alternare tra i form */}
+      <Button
+        handleClick={handleToggleForm}
+        label={step === 1 ? "carica media" : "carica progetto"}
       />
       
       <div className="flex justify-center">

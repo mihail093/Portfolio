@@ -15,14 +15,15 @@ export default function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setError("");
+
     // Validazione di base
     if (!email || !password) {
-      setError("Email e password sono obbligatori!");
+      setError("Email and password are required!");
       return;
     }
 
     setLoading(true);
-    setError("");
 
     try {
       const result = await login(email, password);
@@ -34,10 +35,10 @@ export default function AdminLogin() {
         setEmail("");
         setPassword("");
       } else {
-        setError(result.error || "Credenziali non valide");
+        setError("Invalid credentials");
       }
     } catch (error) {
-      setError("Errore durante il login");
+      setError("Error during login");
     } finally {
       setLoading(false);
     }
@@ -54,7 +55,13 @@ export default function AdminLogin() {
   return (
     <Modal isOpen={showLoginModal} onClose={handleClose} title="Private Area" type="warning">
       <div className="p-6">
-        {error && <SimpleAlert label={error} type="error" />}
+        <div className="min-h-[40px]">
+          {error ? (
+            <SimpleAlert message={error} type="error" duration={0} />
+          ) : (
+            <SimpleAlert message={"This area is restricted to the administrator"} type="info" duration={0} />
+          )}
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -69,7 +76,6 @@ export default function AdminLogin() {
               name="email"
               type="email"
               autoComplete="email"
-              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="
@@ -91,7 +97,6 @@ export default function AdminLogin() {
               name="password"
               type="password"
               autoComplete="current-password"
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="
