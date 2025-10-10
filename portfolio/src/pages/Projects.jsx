@@ -106,7 +106,7 @@ export default function Projects() {
             {cardsData.map((item) => (
               <div
                 key={item.projectIndex} 
-                className='w-full w-[12.5%] md:w-[10%] lg:w-[8%]'
+                className='w-[20%] md:w-[14%] lg:w-[10%]'
               >
                 <Lantern 
                   onClick={() => {
