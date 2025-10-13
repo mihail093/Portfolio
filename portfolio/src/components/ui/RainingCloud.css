@@ -1,28 +1,5 @@
-.rain{
-    animation: cloud 1.5s 2
-}
-
 .flash{
     animation: lightning ease-in 0.2s 2s 3
-}
-
-@keyframes cloud {
-    0% {
-        color: #1e0a34;
-        opacity: 0.4;
-    }
-    25% {
-        color: #946f9c;
-        opacity: 0.6;
-    }
-    50% {
-        color: #2d0b34;
-        opacity: 0.8;
-    }
-    100% {
-        color: #1e0a34;
-        opacity: 1;
-    }
 }
 
 @keyframes lightning {
@@ -42,8 +19,8 @@
     }
     80% {
         color: white;
-        left: 30%;
-        transform: translateY(26%) scale(1.6);
+        right: 30%;
+        transform: translateY(24%) scale(1.5);
     }
     100% {
         opacity: 0;

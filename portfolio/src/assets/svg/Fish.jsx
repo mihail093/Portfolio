@@ -57,4 +57,4 @@ const Fish = (props) => {
     );
 };
 
-export default Fish;
+export default Fish

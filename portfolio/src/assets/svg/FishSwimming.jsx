@@ -154,4 +154,4 @@ const FishSwimming = ({ isClicked, errorLoad }) => {
   );
 };
 
-export default FishSwimming;
+export default FishSwimming

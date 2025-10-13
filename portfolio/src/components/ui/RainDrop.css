@@ -2,7 +2,7 @@
     position: absolute;
     top: -36px;
     width: 1.2px;
-    height: 14px;
+    height: 26px;
     background: #00b3ff;
     opacity: 0;
     animation: rainDrop 1s linear infinite;
