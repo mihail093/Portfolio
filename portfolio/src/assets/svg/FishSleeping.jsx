@@ -10,9 +10,10 @@ const FishSleeping = ({ isRaining, errorLoad }) => {
 
     useEffect(() => {
         setIsEyeOpen(true);
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             setIsEyeOpen(false);
         }, 6000);
+        return () => clearTimeout(timer);
     }, [isRaining]);
 
   return (
@@ -20,11 +21,11 @@ const FishSleeping = ({ isRaining, errorLoad }) => {
         <div className='absolute left-[60%] top-[90%] md:left-[55%] lg:top-[88%] lg:left-[53%] xl:top-[80%]'>
             {isRaining && (
                 errorLoad ? (
-                    <SpeechBubble speed={150}>
+                    <SpeechBubble>
                         I'm happy to see you again. I'm sorry, the projects are currently unavailable
                     </SpeechBubble>
                 ) : (
-                    <SpeechBubble speed={150}>
+                    <SpeechBubble>
                         I'm happy to see you again. Click on one of the lanterns to see a project
                     </SpeechBubble>
                 )

@@ -19,6 +19,9 @@ export default function Projects() {
   // useState per gestire l'errore di caricamento
   const [errorLoad, setErrorLoad] = useState(false);
 
+  // useState per mostrare Alert
+  const [showAlert, setShowAlert] = useState(false);
+
   // useEffect per il caricamento dei progetti
   useEffect(() => {
     const fetchProjectsData = async () => {
@@ -49,6 +52,15 @@ export default function Projects() {
 
     fetchProjectsData();
   }, []);
+
+  // useEffect per mostrare Alert (messaggio che suggerisce all'utente di cliccare sulla nuvola)
+  useEffect(() => {
+    if (!isRaining && isDark) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [isDark, isRaining]);
 
   // useEffect reimposta isRainig e isClicked entrambi a 'false'
   useEffect(() => {
@@ -115,6 +127,7 @@ export default function Projects() {
                     )); 
                     setIsClicked(true);
                   }}
+                  isRaining={isRaining}
                 />
               </div>
             ))}
@@ -123,7 +136,7 @@ export default function Projects() {
 
         {/* Layer 6: Alert */}
         <div className='relative z-50'>
-          {isDark && <Alert label='Click the cloud to wake up Joe' />}
+          {showAlert && <Alert label='Click the cloud to wake up Joe' />}
         </div>
       </div>
     </div>

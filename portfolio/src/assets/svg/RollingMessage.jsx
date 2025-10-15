@@ -66,7 +66,7 @@ function RollingMessage({ setSending, setMessageSent, formData, setFormData }) {
     useState messageSent diventa 'true' (viene visualizzato <Alert>)
     i dati del form vengono resettati
     */ 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setMessageSent(true);
       setFormData({
         name: '',
@@ -76,6 +76,8 @@ function RollingMessage({ setSending, setMessageSent, formData, setFormData }) {
       });
       setSending(false);
     }, 6000);
+
+    return () => clearTimeout(timer);
   },[]);
 
   return (

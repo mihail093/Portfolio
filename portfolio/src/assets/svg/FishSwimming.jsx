@@ -71,11 +71,11 @@ const FishSwimming = ({ isClicked, errorLoad }) => {
         {delaySpeechBubble &&
           !isClicked &&
           (errorLoad ? (
-            <SpeechBubble speed={150}>
+            <SpeechBubble>
               I'm sorry, the projects are currently unavailable
             </SpeechBubble>
           ) : (
-            <SpeechBubble speed={150}>
+            <SpeechBubble>
               What a beautiful day! Click on the lanterns to see the projects
             </SpeechBubble>
           ))}
