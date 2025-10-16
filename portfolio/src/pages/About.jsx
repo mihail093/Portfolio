@@ -3,6 +3,7 @@ import AboutCard from "../components/layout/AboutCard";
 import { ResponsiveCloudinaryImage } from "../components/ui";
 import { mediaService } from "../services/apiService";
 import { useTheme } from "../context/ThemeContext";
+import { motion } from "framer-motion";
 import { ArrowRightIcon, ArrowDownIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import "./About.css";
 
@@ -62,6 +63,52 @@ export default function About() {
         </div>
       }
       <div className="z-10">
+        <div className="relative my-8 h-14 select-none">
+          <motion.span
+            className="absolute left-0 font-lobster text-4xl pl-8"
+            initial={{ x: '0vw', opacity: 0 }}
+            animate={{ x: '50vw', opacity: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 74,
+              damping: 14,
+              mass: 1.25,
+              delay: 0.3,
+            }}
+          >
+            Code
+          </motion.span>
+
+          <motion.span
+            className="absolute bottom-[60px] left-[50vw] font-lobster text-2xl"
+            initial={{ y: '0px', opacity: 0 }}
+            animate={{ y: '40px', opacity: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 80,
+              damping: 12,
+              mass: 1,
+              delay: 0.4,
+            }}
+          >
+            the
+          </motion.span>
+
+          <motion.span
+            className="absolute right-0 font-lobster text-4xl pe-4"
+            initial={{ x: '0vw', opacity: 0 }}
+            animate={{ x: '-50vw', opacity: 1 }}
+            transition={{
+              type: 'spring',
+              stiffness: 74,
+              damping: 14,
+              mass: 1.25,
+              delay: 0.3,
+            }}
+          >
+            Behind
+          </motion.span>
+        </div>
         <AboutCard
           type="profile"
           title="About Me"

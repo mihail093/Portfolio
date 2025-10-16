@@ -43,7 +43,7 @@ export default function Contact() {
         transition={{ duration: 1.2 }}
       >
         <h1 className='text-center font-lobster text-5xl select-none'>Let's get in touch</h1>
-        <div className='p-6 space-y-4'>
+        <div className='p-6 space-y-6 md:space-y-4'>
           <div>
             <BsMailbox2Flag className='inline-block text-4xl me-2'/>
             <span className='font-montserrat text-sm'>rmihajlo800@gmail.com</span>
