@@ -62,7 +62,7 @@ export default function About() {
         >
         </div>
       }
-      <div className="z-10">
+      <div className="z-10 space-y-24 md:space-y-12">
         <div className="relative my-8 h-14 select-none">
           <motion.span
             className="absolute left-0 font-lobster text-4xl pl-8"

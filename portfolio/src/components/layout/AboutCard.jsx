@@ -35,7 +35,7 @@ export default function AboutCard({ type, title, content }) {
     const CARD_TYPES = {
         profile: {
             icon: imgProfile,
-            className: 'h-40 w-40 m-auto rounded-full',
+            className: 'h-40 w-40 m-auto',
             bgColor: 'bg-[#a0c4ff] dark:bg-[#182136]'
         },
         education: {
@@ -74,13 +74,19 @@ export default function AboutCard({ type, title, content }) {
     <div className={`${bgClass} w-[65%] md:w-[55%] max-w-[420px] mx-auto space-y-2 py-6 my-2`}>
         <div className='font-lobster select-none'>
             {type === 'profile' ? (
-                loading
-                    ? <div className={`${cardClass} animate-pulse bg-gray-200`} />
-                    : <img src={CardIcon} alt="Profile" className={`${cardClass}`} />
+                <div>
+                    <h1 className='text-center text-5xl mb-4'>{title}</h1>
+                    {loading
+                        ? <div className={`${cardClass} animate-pulse bg-gray-200`} />
+                        : <img src={CardIcon} alt="Profile" className={`${cardClass}`} />
+                    }
+                </div>
             ) : (
-                <CardIcon className={`${cardClass}`} aria-hidden="true" />
+                <div>
+                    <CardIcon className={`${cardClass}`} aria-hidden="true" />
+                    <h1 className='text-center text-5xl'>{title}</h1>
+                </div>
             )}
-            <h1 className='text-center text-5xl'>{title}</h1>  
         </div>
         <div className='p-6 font-montserrat select-none'>
             {content}
