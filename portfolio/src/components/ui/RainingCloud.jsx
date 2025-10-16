@@ -20,7 +20,6 @@ export default function RainingCloud({isRaining, setIsRaining}) {
             <div className='relative' onClick={handleClick}>
                 <CloudRain isRaining={isRaining} />
                 <GiPowerLightning
-                    size="90"
                     className='absolute top-[72%] right-[26%] opacity-0 lightning-icon'
                 />
             </div>

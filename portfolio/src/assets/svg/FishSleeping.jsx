@@ -22,11 +22,11 @@ const FishSleeping = ({ isRaining, errorLoad }) => {
             {isRaining && (
                 errorLoad ? (
                     <SpeechBubble>
-                        I'm happy to see you again. I'm sorry, the projects are currently unavailable
+                        I'm sorry, the projects are currently unavailable
                     </SpeechBubble>
                 ) : (
                     <SpeechBubble>
-                        I'm happy to see you again. Click on one of the lanterns to see a project
+                        I'm happy to see you again. Click the lanterns to see the projects
                     </SpeechBubble>
                 )
             )}

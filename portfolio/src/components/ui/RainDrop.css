@@ -18,3 +18,22 @@
       opacity: 0;
     }
 }
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .raindrop {
+        width: 0.8px;
+        height: 16px;
+        animation: landscapeRainDrop 1s linear infinite;
+    }
+    
+    @keyframes landscapeRainDrop {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+            transform: translateY(30vh);
+            opacity: 0;
+        }
+    }
+}

@@ -1,4 +1,6 @@
 .flash{
+    width: 90px;
+    height: 90px;
     animation: lightning ease-in 0.2s 2s 3
 }
 
@@ -24,5 +26,12 @@
     }
     100% {
         opacity: 0;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .flash{
+        width: 50px;
+        height: 50px;
     }
 }

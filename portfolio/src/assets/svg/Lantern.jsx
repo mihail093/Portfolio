@@ -22,7 +22,7 @@ const Lantern = ({ onClick, isRaining }) => {
     setIsLanternClicked(true);
     setTimeout(() => setIsLanternClicked(false), 900);
     
-    if (!isLanternOn) return;
+    if (!isLanternOn && isDark) return;
     onClick?.();
   };
 

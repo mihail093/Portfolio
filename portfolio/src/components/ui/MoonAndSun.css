@@ -10,7 +10,7 @@
 .moon {
     width: 80px;
     height: 80px;
-    right: 240px;
+    right: 150px;
     background: #ffffff;
     box-shadow: inset -25px -25px 40px #b8b8b8, 0 0 20px #ffffff, 0 0 40px #d4d4d4;
     animation: moonGlow 4s infinite alternate;

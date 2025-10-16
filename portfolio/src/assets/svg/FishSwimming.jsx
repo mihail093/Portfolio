@@ -76,7 +76,7 @@ const FishSwimming = ({ isClicked, errorLoad }) => {
             </SpeechBubble>
           ) : (
             <SpeechBubble>
-              What a beautiful day! Click on the lanterns to see the projects
+              What a beautiful day! Click the lanterns to see the projects
             </SpeechBubble>
           ))}
       </div>
