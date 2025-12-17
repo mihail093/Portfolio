@@ -97,10 +97,8 @@ export default function ContactForm({ handleClick, handleMessageSent }) {
 
   return (
     <div className='relative'>
-      <div className=''>
-        {messageSent && <Alert label='Message sent successfully' type='success' />}
-        {sendError && <Alert label="Something went wrong" type='warning' />}
-      </div>
+      {messageSent && <Alert label='Message sent successfully' type='success' />}
+      {sendError && <Alert label="Something went wrong" type='warning' />}
       {sending ? (
         <RollingMessage setSending={setSending} setMessageSent={setMessageSent} formData={formData} setFormData={setFormData} /> 
       ) : (
