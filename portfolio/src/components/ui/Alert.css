@@ -1,6 +1,7 @@
 .show-alert{
     position: absolute;
     opacity: 0;
+    left: -42px;
     top: -5%;
     margin: 0.5rem;
     text-align: center;

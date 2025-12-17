@@ -97,9 +97,13 @@ export default function ContactForm({ handleClick, handleMessageSent }) {
 
   return (
     <div className='relative'>
-      {messageSent && <Alert label='Message sent successfully' type='success' />}
-      {sendError && <Alert label="I'm sorry, something went wrong" type='warning' />}
-      {sending ? <RollingMessage setSending={setSending} setMessageSent={setMessageSent} formData={formData} setFormData={setFormData} /> : (
+      <div className=''>
+        {messageSent && <Alert label='Message sent successfully' type='success' />}
+        {sendError && <Alert label="I'm sorry, something went wrong" type='warning' />}
+      </div>
+      {sending ? (
+        <RollingMessage setSending={setSending} setMessageSent={setMessageSent} formData={formData} setFormData={setFormData} /> 
+      ) : (
         <div className='mb-12'>
           <div className='w-full flex justify-end mb-6'>
             <Button handleClick={handleClick} label="Back" />
