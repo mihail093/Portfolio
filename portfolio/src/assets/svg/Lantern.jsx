@@ -11,7 +11,7 @@ const Lantern = ({ onClick, isRaining }) => {
   //useEFfect per 'illuminare' le lanterne
   useEffect(() => {
     const value = isRaining ? true : false;
-    const delay = isRaining ? 9300 : 200;
+    const delay = isRaining ? 5300 : 200;
 
     const timer = setTimeout(() => setIsLanternOn(value), delay);
 
