@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { projectService } from '../../services/apiService';
 import { motion, useInView } from 'framer-motion';
-import { Fish } from '../../assets/svg';
+import { Fish } from '../../assets/svg_components';
 import { SpeechBubble, Button, HeroCards } from '../ui';
 
 export default function Hero({ clicked, setClicked, backClicked, setBackClicked }) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { projectService } from '../services/apiService';
 import { useTheme } from '../context/ThemeContext';
-import { FishSwimming, FishSleeping, Lantern } from '../assets/svg';
+import { FishSwimming, FishSleeping, Lantern } from '../assets/svg_components';
 import { MoonAndSun, RainingCloud, Alert } from '../components/ui';
 import Card from '../components/layout/Card';
 import { ImCloud } from "react-icons/im";

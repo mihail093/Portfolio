@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { Button, Alert } from '../ui';
-import { RollingMessage } from '../../assets/svg';
+import { RollingMessage } from '../../assets/svg_components';
 import emailjs from '@emailjs/browser';
 
 

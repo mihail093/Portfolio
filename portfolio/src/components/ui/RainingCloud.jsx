@@ -2,7 +2,7 @@ import React from 'react';
 import { ImCloud } from "react-icons/im";
 import { GiPowerLightning } from "react-icons/gi";
 import RainDrop from './RainDrop';
-import CloudRain from '../../assets/svg/CloudRain';
+import CloudRain from '../../assets/svg_components/CloudRain';
 import './RainingCloud.css';
 
 export default function RainingCloud({isRaining, setIsRaining}) {

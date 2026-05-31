@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FaLinkedinIn, FaGithubAlt } from "react-icons/fa";
 import { BsMailbox2Flag } from "react-icons/bs";
-import { Fish } from '../assets/svg';
+import { Fish } from '../assets/svg_components';
 import { SpeechBubble, Button } from '../components/ui';
 import ContactForm from '../components/layout/ContactForm';
 

@@ -19,7 +19,7 @@ export default function AdminLayout() {
   const BACKGROUND_IMAGE_ID = "68506e9c70324877aa850cfc";
   const [backgroundImgUrl, setBackgroundImgUrl] = useState(null);
 
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
   useEffect(() => {
     const fetchBackgroundImage = async () => {
@@ -40,6 +40,7 @@ export default function AdminLayout() {
     { name: "Progetti", href: "/admin/projects", icon: FolderIcon },
     { name: "Media", href: "/admin/media", icon: PhotoIcon },
     { name: "Crea", href: "/admin/manager", icon: PuzzlePieceIcon },
+    { name: "Progress", href: "/admin/progress", icon: FolderIcon },
   ];
 
   const handleLogout = async () => {
@@ -74,6 +75,9 @@ export default function AdminLayout() {
                   <Link
                     key={item.name}
                     to={item.href}
+                    onClick={() => {
+                      if (item.href === "/admin/progress") setIsSidebarVisible(false);
+                    }}
                     className={`${
                       current
                         ? "bg-indigo-100 text-indigo-700"
@@ -93,7 +97,7 @@ export default function AdminLayout() {
             </div>
             {isSidebarVisible &&
               <ArrowLeftIcon 
-                className="absolute w-10 p-1 right-0 bottom-1/3 md:bottom-0 lg:hidden rounded-full bg-gray-300" 
+                className="absolute w-10 p-1 right-0 bottom-1/3 md:bottom-0 rounded-full bg-gray-300" 
                 onClick={() => setIsSidebarVisible(false)}
               />
             }
@@ -137,11 +141,11 @@ export default function AdminLayout() {
       {/* Main content area - occupa tutto lo spazio rimanente */}
       <div className="relative flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Content wrapper con padding e scroll */}
-        <div className="flex-1 h-full py-6 px-8 overflow-auto">
+        <div className="flex-1 h-full overflow-auto">
           <Outlet />
           {!isSidebarVisible &&
             <ArrowRightIcon 
-              className="absolute w-10 p-1 left-0 top-1/2 lg:hidden rounded-full bg-white/80"
+              className="absolute w-10 p-1 left-0 top-1/2 rounded-full bg-white/80"
               onClick={() => setIsSidebarVisible(true)}
             />
           }

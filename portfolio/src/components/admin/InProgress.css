@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Cinzel:wght@400..900&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.text-container {
+  width: 100%;
+  padding: 60px 20px 20px 20px;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.wedding-title,
+.main-italic-text,
+.date {
+  white-space: nowrap;
+}
+
+.wedding-title {
+  font-family: "Cinzel", sans-serif;
+  font-size: clamp(1rem, 6vw, 1.5rem);
+  line-height: 1.4;
+  color: #a38f70;
+}
+
+.main-italic-text {
+  font-family: "Pinyon Script", cursive;
+  font-size: clamp(2rem, 10vw, 4rem);
+  font-weight: 500;
+  color: #712200;
+}
+
+.date {
+  font-family: "Cinzel", sans-serif;
+  font-size: clamp(1rem, 7vw, 1.8rem);
+  letter-spacing: 0.2em;
+  margin-top: 50px;
+  color: #a2a49f;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #838383;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.625);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 50;
+}
+
+.overlay h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  color: #d6dadb;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.img-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.other-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.link-location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.150s ease-in;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: #f0f0f0; 
+  text-decoration: none;
+  /* EFFETTO RILIEVO */
+  box-shadow: 
+    8px 8px 15px #d1d1d1,       /* Ombra scura esterna */
+    -4px -4px 8px #ffffff,     /* Luce esterna */
+    inset 1px 1px 3px #ffffff,  /* Riflesso interno */
+    inset -2px -2px 5px #d1d1d1;/* Ombra interna */
+}
+
+.link-title {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 3px;
+  font-size: 14px;
+  color: #b09980;
+  margin-bottom: 5px;
+}
+
+.link-subtitle {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 28px;
+  color: #8d7558;
+  margin-top: -5px;
+}
+
+/* Effetto al click */
+.link-location:active {
+  box-shadow: 
+    inset 5px 5px 10px #d1d1d1, 
+    inset -5px -5px 10px #ffffff;
+  transform: scale(0.98);
+}
+
+.countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.time-block span {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2a2a2a;
+}
+
+.time-block p {
+    font-family: "Lato", sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #712200;
+}
+
+.desktop-only-overlay {
+  display: none;
+}
+
+@media screen and (min-width: 601px) and (orientation: landscape) and (min-height: 451px),
+  screen and (min-width: 1025px) {
+  .wedding-main {
+    display: none;
+  }
+
+  .desktop-only-overlay {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .wedding-card {
+    position: fixed;
+    top: 1/2;
+    right: 1/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 44vw;
+    height: 72vh;
+  }
+
+  .wedding-card h1 {
+    font-family: "Allura", cursive;
+    font-size: clamp(2rem, 12vw, 4.5rem);
+    line-height: 1.4;
+  }
+
+  .wedding-card img {
+    width: 40%;
+  }
+
+  .wedding-card p {
+    font-family: "Playfair Display", sans-serif;
+    font-size: clamp(1rem, 5vw, 1.25rem);
+  }
+}

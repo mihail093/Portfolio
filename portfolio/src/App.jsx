@@ -6,7 +6,7 @@ import Projects from "./pages/Projects";
 import ProjectDetails from "./pages/ProjectDetails";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound"; // ← Crea questo componente
+import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import AdminLogin from "./components/admin/AdminLogin";
@@ -16,6 +16,7 @@ import ProjectMediaManager from "./components/admin/ProjectMediaManager";
 import AdminMedia from "./components/admin/AdminMedia";
 import AdminProjects from "./components/admin/AdminProjects";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+import InProgress from "./components/admin/InProgress";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
               <Route path="projects" element={<AdminProjects />} />
               <Route path="media" element={<AdminMedia />} />
               <Route path="manager" element={<ProjectMediaManager />} />
+              <Route path="progress" element={<InProgress />} />
             </Route>
 
             {/* Route 404 */}

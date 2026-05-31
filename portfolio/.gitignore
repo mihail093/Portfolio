@@ -20,7 +20,7 @@ yarn-debug.log*
 # Cache
 .cache/
 
-src/assets/images/
+# src/assets/images/
 public/vite.svg
 
 # OS files
