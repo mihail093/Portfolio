@@ -9,6 +9,7 @@ import {
   PuzzlePieceIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 
 export default function AdminLayout() {
@@ -40,7 +41,7 @@ export default function AdminLayout() {
     { name: "Progetti", href: "/admin/projects", icon: FolderIcon },
     { name: "Media", href: "/admin/media", icon: PhotoIcon },
     { name: "Crea", href: "/admin/manager", icon: PuzzlePieceIcon },
-    { name: "Progress", href: "/admin/progress", icon: FolderIcon },
+    { name: "Progress", href: "/admin/progress", icon: WrenchScrewdriverIcon },
   ];
 
   const handleLogout = async () => {

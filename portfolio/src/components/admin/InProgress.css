@@ -4,50 +4,6 @@
   overflow: hidden;
 }
 
-.main-content {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100dvh;
-}
-
-.text-container {
-  width: 100%;
-  padding: 60px 20px 20px 20px;
-  text-align: center;
-  color: #1a1a1a;
-}
-
-.wedding-title,
-.main-italic-text,
-.date {
-  white-space: nowrap;
-}
-
-.wedding-title {
-  font-family: "Cinzel", sans-serif;
-  font-size: clamp(1rem, 6vw, 1.5rem);
-  line-height: 1.4;
-  color: #a38f70;
-}
-
-.main-italic-text {
-  font-family: "Pinyon Script", cursive;
-  font-size: clamp(2rem, 10vw, 4rem);
-  font-weight: 500;
-  color: #712200;
-}
-
-.date {
-  font-family: "Cinzel", sans-serif;
-  font-size: clamp(1rem, 7vw, 1.8rem);
-  letter-spacing: 0.2em;
-  margin-top: 50px;
-  color: #a2a49f;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #838383;
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -69,9 +25,18 @@
   color: #d6dadb;
 }
 
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100dvh;
+}
+
 .img-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -81,14 +46,172 @@
   height: auto;
 }
 
+.main-text-container {
+  width: 100%;
+  padding: 60px 20px 20px 20px;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.wedding-title,
+.main-italic-text,
+.date {
+  white-space: nowrap;
+}
+
+.wedding-title {
+  font-family: "Cinzel", sans-serif;
+  font-size: clamp(1rem, 6vw, 1.5rem);
+  line-height: 1.4;
+  color: #b8a38a;
+}
+
+.main-italic-text {
+  font-family: "Pinyon Script", cursive;
+  font-size: clamp(2rem, 10vw, 4rem);
+  font-weight: 500;
+  color: #712200;
+}
+
+.date {
+  font-family: "Cinzel", sans-serif;
+  font-size: clamp(1rem, 7vw, 1.8rem);
+  letter-spacing: 0.2em;
+  margin-top: 50px;
+  color: #a2a49f;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #707070;
+}
+
 .other-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 80px;
   width: 100%;
   padding: 20px;
+}
+
+.countdown-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.countdown-text-container {
   text-align: center;
+}
+
+.countdown-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 42px;
+  color: #838383;
+}
+
+.countdown-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  color: #2a2a2a;
+}
+
+.fireworks-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: 60vh;
+  z-index: 0;
+}
+
+.countdown-wrapper {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  gap: 10px;
+  z-index: 50;
+}
+
+.time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.time-block span {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2a2a2a;
+}
+
+.time-block p {
+  font-family: "Lato", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #712200;
+}
+
+.location-text-container {
+  display: flex;
+  position: absolute;
+  top: 240px;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  z-index: 100;
+}
+
+.location-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 32px;
+  color: #8d7558;
+}
+
+.location-subtitle {
+  font-family: "Cinzel", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.fireworks-container img {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  z-index: 20;
+}
+
+.location-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  gap: 22px;
+}
+
+.location-address-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.bouncing-icon {
+  animation: bounce-and-squish 1.2s infinite;
+  transform-origin: bottom center; /* Fondamentale: fa partire lo schiacciamento dalla base della pin */
+}
+
+.location-address {
+  font-family: "Cinzel", sans-serif;
+  font-size: 16px;
 }
 
 .link-location {
@@ -96,6 +219,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 70%;
   padding: 20px 50px;
   border-radius: 50px;
   cursor: pointer;
@@ -111,6 +235,13 @@
     inset -2px -2px 5px #d1d1d1;/* Ombra interna */
 }
 
+.link-subtitle {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 28px;
+  color: #8d7558;
+  margin-top: -5px;
+}
+
 .link-title {
   font-family: 'Cinzel', serif;
   letter-spacing: 3px;
@@ -119,14 +250,6 @@
   margin-bottom: 5px;
 }
 
-.link-subtitle {
-  font-family: 'Pinyon Script', cursive;
-  font-size: 28px;
-  color: #8d7558;
-  margin-top: -5px;
-}
-
-/* Effetto al click */
 .link-location:active {
   box-shadow: 
     inset 5px 5px 10px #d1d1d1, 
@@ -134,38 +257,104 @@
   transform: scale(0.98);
 }
 
-.countdown-container {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 30px;
-    padding: 20px;
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
 }
 
-.time-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 60px;
+.timeline-title {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 38px;
+  color: #8d7558;
 }
 
-.time-block span {
-    font-family: "Playfair Display", serif;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #2a2a2a;
+.timeline-small {
+  font-family: "Cinzel", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: #2a2a2a;
 }
 
-.time-block p {
-    font-family: "Lato", sans-serif;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #712200;
+.events-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 50px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.events-list::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #d1d1d1;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.events-list > li {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 32px;
+}
+
+.timeline-event {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.time-event {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  color: #2a2a2a;
+  text-align: center;
+}
+
+.description-event {
+  max-width: 320px;
+  width: 90%;
+  padding: 6px 4px;
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  color: #2a2a2a;
+  background-color: #e5eaebcd;
+  text-align: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 25%;
 }
 
 .desktop-only-overlay {
   display: none;
+}
+/* Animazione icona*/
+@keyframes bounce-and-squish {
+  0%, 100% {
+    transform: translateY(0) scaleY(1) scaleX(1);
+    animation-timing-function: ease-out;
+  }
+  40% {
+    transform: translateY(-25px) scaleY(1.05) scaleX(0.95);
+    animation-timing-function: ease-in;
+  }
+  75% {
+    transform: translateY(0) scaleY(1) scaleX(1);
+    animation-timing-function: ease-out;
+  }
+  85% {
+    transform: translateY(0) scaleY(0.85) scaleX(1.15);
+    animation-timing-function: ease-in-out;
+  }
 }
 
 @media screen and (min-width: 601px) and (orientation: landscape) and (min-height: 451px),
