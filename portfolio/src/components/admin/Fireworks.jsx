@@ -22,6 +22,8 @@ export default function Fireworks({ colors }) {
 
     const gravity = 0.05;
     const friction = 0.98;
+    const LAUNCH_INTERVAL = 900; // ms tra un razzo e l'altro
+    const MAX_PARTICLES = 600;   // rete di sicurezza anti-lag
 
     let rockets = [];
     let particles = [];
@@ -89,6 +91,11 @@ export default function Fireworks({ colors }) {
       for (let i = 0; i < count; i++) {
         particles.push(new Particle(x, y, color));
       }
+      // Se per qualche motivo si accumulano troppe particelle
+      // (es. più esplosioni simultanee), tagliamo le più vecchie.
+      if (particles.length > MAX_PARTICLES) {
+        particles.splice(0, particles.length - MAX_PARTICLES);
+      }
     }
 
     function launchRocket(x) {
@@ -103,8 +110,24 @@ export default function Fireworks({ colors }) {
       rockets.push(new Rocket(safeX, targetY));
     }
 
+    // --- Timing basato su requestAnimationFrame, non su setInterval ---
+    // In questo modo il "clock" dei lanci è legato al rendering:
+    // se il tab è in background e rAF si ferma, si ferma anche il lancio,
+    // niente più razzi accumulati che poi esplodono tutti insieme.
     let animationId;
-    function animate() {
+    let lastTimestamp = null;
+    let timeSinceLastLaunch = 0;
+
+    function animate(timestamp) {
+      if (lastTimestamp === null) lastTimestamp = timestamp;
+      let dt = timestamp - lastTimestamp;
+      lastTimestamp = timestamp;
+
+      // Clamp: se per qualsiasi motivo passa troppo tempo tra un frame
+      // e l'altro (tab appena tornato visibile, throttling, ecc.),
+      // non lasciamo che dt "recuperi" tutto il tempo perso.
+      dt = Math.min(dt, 100);
+
       // sfondo trasparente: mostriamo solo i fuochi d'artificio
       ctx.clearRect(0, 0, width, height);
 
@@ -123,14 +146,27 @@ export default function Fireworks({ colors }) {
         return alive;
       });
 
+      timeSinceLastLaunch += dt;
+      if (timeSinceLastLaunch >= LAUNCH_INTERVAL) {
+        timeSinceLastLaunch = 0;
+        launchRocket();
+      }
+
       animationId = requestAnimationFrame(animate);
     }
 
-    animate();
+    animationId = requestAnimationFrame(animate);
 
-    const autoLaunchInterval = setInterval(() => {
-      launchRocket();
-    }, 900);
+    // Quando il tab torna visibile dopo essere stato nascosto,
+    // resettiamo il riferimento del tempo invece di lasciare che
+    // il dt accumulato causi un salto/burst.
+    function handleVisibilityChange() {
+      if (!document.hidden) {
+        lastTimestamp = null;
+        timeSinceLastLaunch = 0;
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     function handleResize() {
       width = canvas.width = canvas.offsetWidth;
@@ -140,7 +176,7 @@ export default function Fireworks({ colors }) {
 
     return () => {
       cancelAnimationFrame(animationId);
-      clearInterval(autoLaunchInterval);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("resize", handleResize);
     };
   }, [colors]);

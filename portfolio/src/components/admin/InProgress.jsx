@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Pagina2Background from "../../assets/assets_workInProgress/background.webp";
-import Pagina2Disegno from "../../assets/assets_workInProgress/Pagina2_disegno.webp";
-import Pagina2Logo from "../../assets/assets_workInProgress/Pagina2_logo.webp";
-import PrincessWhite from "../../assets/assets_workInProgress/Princess_White.webp";
-import QRCodeBackground from "../../assets/assets_workInProgress/QR_code_bg.webp";
+import Background from "../../assets/assets_workInProgress/background.webp";
+import Cupola from "../../assets/assets_workInProgress/Cupola.webp";
+import Logo from "../../assets/assets_workInProgress/Logo.webp";
+import Ristorante from "../../assets/assets_workInProgress/Ristorante.webp";
 import QRCode from "../../assets/assets_workInProgress/QR_code_esempio.webp";
 import RamIcon from "../../assets/assets_workInProgress/Ram_icon.svg";
 import TopolovnikIcon from "../../assets/assets_workInProgress/Topolovnik_icon.svg";
-import CrkvaIcon from "../../assets/assets_workInProgress/crkva_icon.svg";
-import MladenciIcon from "../../assets/assets_workInProgress/mladenci_icon.svg";
-import RestoranIcon from "../../assets/assets_workInProgress/restoran_icon.svg";
+import ChiesaIcon from "../../assets/assets_workInProgress/Chiesa_icon.svg";
+import SposiciIcon from "../../assets/assets_workInProgress/Sposi_icon.svg";
+import RistoranteIcon from "../../assets/assets_workInProgress/Ristorante_icon.svg";
 import Fireworks from "./Fireworks";
 import "./InProgress.css";
 
@@ -26,7 +25,7 @@ export default function InProgress() {
 
   // 1. Logica del Countdown (invariata)
   useEffect(() => {
-    const weddingDate = new Date("August 12, 2026 02:11:00").getTime();
+    const weddingDate = new Date("September 05, 2027 10:00:00").getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -61,7 +60,7 @@ export default function InProgress() {
   const getMapLink = () => {
     const lat = "44.60286612957192";
     const lon = "21.127036543075704";
-    const isiOS =
+    const isiOS = 
       /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     return isiOS
       ? `http://maps.apple.com/?daddr=${lat},${lon}&dirflg=d`
@@ -86,10 +85,10 @@ export default function InProgress() {
       <main
         className="wedding-main"
         style={{
-          backgroundImage: Pagina2Background
-            ? `url(${Pagina2Background})`
+          backgroundImage: Background
+            ? `url(${Background})`
             : null,
-          backgroundSize: "cover",
+          backgroundSize: "contain",
           backgroundPosition: "center",
           backgroundRepeat: "repeat",
           backgroundAttachment: "scroll",
@@ -113,15 +112,15 @@ export default function InProgress() {
 
         <div className="main-content">
           <div className="img-container">
-            <img src={Pagina2Logo} alt="immagine logo" />
+            <img src={Logo} alt="immagine logo" />
           </div>
           <div className="main-text-container">
             <h1 className="wedding-title">SAVE THE DATE</h1>
-            <p className="main-italic-text">Anđela and Aleksandar</p>
-            <h2 className="date">5 | 09 | 2027</h2>
+            <p className="main-italic-text">Anđela i Aleksandar</p>
+            <h2 className="date">05 | 09 | 2027</h2>
           </div>
           <div className="img-container">
-            <img src={Pagina2Disegno} alt="disegno decorativo" />
+            <img src={Cupola} alt="disegno decorativo" />
           </div>
         </div>
 
@@ -153,7 +152,7 @@ export default function InProgress() {
                 <h3 className="location-subtitle">Restoran Princess White</h3>
               </div>
               
-              <img src={PrincessWhite} alt="disegno della location" />
+              <img src={Ristorante} alt="disegno della location" />
               {isFinished ? <Fireworks /> : null}
             </div>
           </div>
@@ -225,21 +224,21 @@ export default function InProgress() {
             <ul className="events-list">
               <li>
                 <div className="timeline-event">
-                  <img src={RamIcon} alt="icon" width={96} height={96} loading="lazy" />
+                  <img src={RamIcon} alt="icon" width={110} height={110} loading="lazy" />
                   <p className="time-event">10.00</p>
                 </div>
               </li>
 
               <li>
                 <div className="timeline-event">
-                  <img src={TopolovnikIcon} alt="icon" width={96} height={96} loading="lazy" />
+                  <img src={TopolovnikIcon} alt="icon" width={110} height={110} loading="lazy" />
                   <p className="time-event">11.00</p>
                 </div>
               </li>
 
               <li>
                 <div className="timeline-event">
-                  <img src={CrkvaIcon} alt="icon" width={96} height={96} loading="lazy" />
+                  <img src={ChiesaIcon} alt="icon" width={110} height={110} loading="lazy" />
                   <p className="time-event">12.00</p>
                   <p className="description-event">Crkveno venčanje u crkvi Svetog Arhangela Mihajla u Ramu</p>
                 </div>
@@ -247,7 +246,7 @@ export default function InProgress() {
 
               <li>
                 <div className="timeline-event">
-                  <img src={MladenciIcon} alt="icon" width={96} height={96} loading="lazy" />
+                  <img src={SposiciIcon} alt="icon" width={110} height={110} loading="lazy" />
                   <p className="time-event">13.00</p>
                   <p className="description-event">Opštinsko venčanje na platou Ramske tvrdjave u Ramu</p>
                 </div>
@@ -255,7 +254,7 @@ export default function InProgress() {
 
               <li>
                 <div className="timeline-event">
-                  <img src={RestoranIcon} alt="icon" width={140} height={96} loading="lazy" />
+                  <img src={RistoranteIcon} alt="icon" width={160} height={160} loading="lazy" />
                   <p className="time-event">15.00</p>
                   <p className="description-event">Skup gostiju u restoranu Princess White u Požarevcu</p>
                 </div>
@@ -265,22 +264,12 @@ export default function InProgress() {
         </div>
       </main>
 
-      <div
-        className="desktop-only-overlay"
-        style={{
-          backgroundImage: QRCodeBackground ? `url(${QRCodeBackground})` : null,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+      <div className="desktop-only-overlay">
         <div className="wedding-card">
           <h1>A & A</h1>
           <img src={QRCode} alt="QR code" />
-          <p>
-            Skenirajte QR kod da biste posetili našu digitalnu pozivnicu za
-            venčanje.
-          </p>
+          <p>Skenirajte QR kod da biste</p>
+          <p>posetili našu digitalnu pozivnicu za venčanje</p>
         </div>
       </div>
     </>

@@ -76,11 +76,10 @@
 .date {
   font-family: "Cinzel", sans-serif;
   font-size: clamp(1rem, 7vw, 1.8rem);
+  font-weight: 600;
   letter-spacing: 0.2em;
   margin-top: 50px;
-  color: #a2a49f;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: #707070;
+  color: #707070;
 }
 
 .other-content {
@@ -161,7 +160,7 @@
 .location-text-container {
   display: flex;
   position: absolute;
-  top: 240px;
+  top: 1/2;
   flex-direction: column;
   gap: 12px;
   text-align: center;
@@ -370,6 +369,9 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background: radial-gradient(circle at center, #ffffff 0%, #fdfbf7 70%, #f7f3eb 100%);
+    background-attachment: fixed;
+    margin: 0;
   }
 
   .wedding-card {
