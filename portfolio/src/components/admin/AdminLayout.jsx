@@ -41,7 +41,7 @@ export default function AdminLayout() {
     { name: "Progetti", href: "/admin/projects", icon: FolderIcon },
     { name: "Media", href: "/admin/media", icon: PhotoIcon },
     { name: "Crea", href: "/admin/manager", icon: PuzzlePieceIcon },
-    { name: "Progress", href: "/admin/progress", icon: WrenchScrewdriverIcon },
+    { name: "Progress", href: "/admin/envelope", icon: WrenchScrewdriverIcon },
   ];
 
   const handleLogout = async () => {
@@ -77,7 +77,7 @@ export default function AdminLayout() {
                     key={item.name}
                     to={item.href}
                     onClick={() => {
-                      if (item.href === "/admin/progress") setIsSidebarVisible(false);
+                      if (item.href === "/admin/envelope") setIsSidebarVisible(false);
                     }}
                     className={`${
                       current

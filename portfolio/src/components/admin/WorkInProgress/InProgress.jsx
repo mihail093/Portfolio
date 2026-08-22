@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Background from "../../assets/assets_workInProgress/background.webp";
-import Cupola from "../../assets/assets_workInProgress/Cupola.webp";
-import Logo from "../../assets/assets_workInProgress/Logo.webp";
-import Ristorante from "../../assets/assets_workInProgress/Ristorante.webp";
-import QRCode from "../../assets/assets_workInProgress/QR_code_esempio.webp";
-import RamIcon from "../../assets/assets_workInProgress/Ram_icon.svg";
-import TopolovnikIcon from "../../assets/assets_workInProgress/Topolovnik_icon.svg";
-import ChiesaIcon from "../../assets/assets_workInProgress/Chiesa_icon.svg";
-import SposiciIcon from "../../assets/assets_workInProgress/Sposi_icon.svg";
-import RistoranteIcon from "../../assets/assets_workInProgress/Ristorante_icon.svg";
+import Background from "../../../assets/assets_workInProgress/background.webp";
+import Cupola from "../../../assets/assets_workInProgress/Cupola.webp";
+import Logo from "../../../assets/assets_workInProgress/Logo.webp";
+import Ristorante from "../../../assets/assets_workInProgress/Ristorante.webp";
+import QRCode from "../../../assets/assets_workInProgress/QR_code_esempio.webp";
+import RamIcon from "../../../assets/assets_workInProgress/Ram_icon.svg";
+import TopolovnikIcon from "../../../assets/assets_workInProgress/Topolovnik_icon.svg";
+import ChiesaIcon from "../../../assets/assets_workInProgress/Chiesa_icon.svg";
+import SposiciIcon from "../../../assets/assets_workInProgress/Sposi_icon.svg";
+import RistoranteIcon from "../../../assets/assets_workInProgress/Ristorante_icon.svg";
 import Fireworks from "./Fireworks";
 import "./InProgress.css";
 

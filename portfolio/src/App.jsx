@@ -16,7 +16,8 @@ import ProjectMediaManager from "./components/admin/ProjectMediaManager";
 import AdminMedia from "./components/admin/AdminMedia";
 import AdminProjects from "./components/admin/AdminProjects";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
-import InProgress from "./components/admin/InProgress";
+import InProgress from "./components/admin/WorkInProgress/InProgress";
+import EnvelopeVideo from "./components/admin/WorkInProgress/EnvelopeVideo";
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
               <Route path="media" element={<AdminMedia />} />
               <Route path="manager" element={<ProjectMediaManager />} />
               <Route path="progress" element={<InProgress />} />
+              <Route path="envelope" element={<EnvelopeVideo />} />
             </Route>
 
             {/* Route 404 */}
